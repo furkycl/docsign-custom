@@ -1,0 +1,57 @@
+# Development docker-compose — bind-mounts source code for live reload
+# Usage: docker compose -f docker-compose.dev.yml up
+#
+# First run takes ~5-10 min (apk + bundle install + yarn install).
+# Subsequent runs are fast because gem cache + node_modules are persisted.
+
+services:
+  postgres:
+    image: postgres:18
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: docuseal_dev
+    volumes:
+      - pg_dev_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    image: ruby:4.0.1-alpine
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - .:/app
+      - bundle_cache:/usr/local/bundle
+      - node_modules:/app/node_modules
+    working_dir: /app
+    ports:
+      - "3000:3000"
+      - "3035:3035"  # shakapacker dev server
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/docuseal_dev
+      RAILS_ENV: development
+      NODE_ENV: development
+      BUNDLE_PATH: /usr/local/bundle
+      BINDING: 0.0.0.0
+    command: >
+      sh -c "
+      apk add --no-cache nodejs yarn build-base postgresql-dev tzdata git curl chromium &&
+      bundle install &&
+      yarn install &&
+      bundle exec rails db:create 2>/dev/null || true &&
+      bundle exec rails db:migrate &&
+      bundle exec rails runner db/seeds/brands.rb &&
+      bundle exec foreman start -f Procfile.dev
+      "
+
+volumes:
+  pg_dev_data:
+  bundle_cache:
+  node_modules:

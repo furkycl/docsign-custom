@@ -30,6 +30,8 @@ class Account < ApplicationRecord
           class_name: 'TemplateFolder', dependent: :destroy, inverse_of: :account
   has_many :submissions, dependent: :destroy
   has_many :submitters, dependent: :destroy
+  # DOCSIGN-CUSTOM: multi-brand support — every account gets its own brand catalog
+  has_many :brands, dependent: :destroy
   has_many :account_linked_accounts, dependent: :destroy
   has_many :email_events, dependent: :destroy
   has_many :document_metadata, class_name: 'DocumentMetadata', dependent: :destroy
@@ -56,6 +58,19 @@ class Account < ApplicationRecord
   attribute :locale, :string, default: 'en-US'
 
   scope :active, -> { where(archived_at: nil) }
+
+  # DOCSIGN-CUSTOM: every new account gets the 3 default brands automatically
+  after_create :seed_default_brands
+
+  def seed_default_brands
+    Brand::DEFAULT_SEEDS.each do |attrs|
+      brands.find_or_create_by!(slug: attrs[:slug]) do |brand|
+        brand.assign_attributes(attrs)
+      end
+    end
+  rescue NameError
+    # Brand model not yet loaded (migrations not run); silently skip
+  end
 
   def testing?
     linked_account_account&.testing?

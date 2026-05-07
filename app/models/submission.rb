@@ -41,6 +41,8 @@ class Submission < ApplicationRecord
   belongs_to :template, optional: true
   belongs_to :account
   belongs_to :created_by_user, class_name: 'User', optional: true
+  # DOCSIGN-CUSTOM: brand selection at send-time (multi-brand mailer)
+  belongs_to :brand, optional: true
 
   has_one :search_entry, as: :record, inverse_of: :record, dependent: :destroy if SearchEntry.table_exists?
 

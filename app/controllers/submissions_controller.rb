@@ -54,6 +54,12 @@ class SubmissionsController < ApplicationController
         create_submissions(@template, submissions_params, params)
       end
 
+    # DOCSIGN-CUSTOM: apply selected brand to all created submissions (one brand per send batch)
+    if params[:brand_id].present? && submissions.present?
+      brand = current_account.brands.active.find_by(id: params[:brand_id])
+      Submission.where(id: submissions.map(&:id)).update_all(brand_id: brand.id) if brand
+    end
+
     WebhookUrls.enqueue_events(submissions, 'submission.created')
 
     Submissions.send_signature_requests(submissions)
@@ -110,6 +116,13 @@ class SubmissionsController < ApplicationController
 
   def submissions_params
     params.permit(submission: { submitters: [:uuid, :email, :phone, :name, { values: {} }] })
+  end
+
+  # DOCSIGN-CUSTOM: helper for the brand dropdown in submissions/new modal
+  helper_method :available_brands
+
+  def available_brands
+    @available_brands ||= current_account.brands.active.ordered
   end
 
   def load_template

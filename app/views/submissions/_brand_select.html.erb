@@ -1,0 +1,18 @@
+<%# DOCSIGN-CUSTOM: brand selector for the send-document modal. %>
+<%# Renders a select if any brands exist on the current account; otherwise nothing. %>
+<% if available_brands.any? %>
+  <div class="form-control mb-2">
+    <label class="label pt-0 pb-1">
+      <span class="label-text font-medium"><%= t('brand', default: 'Marka') %></span>
+    </label>
+    <select name="brand_id"
+            class="base-input !h-10 w-full"
+            required
+            aria-label="<%= t('select_brand', default: 'Bir marka seçin') %>">
+      <option value=""><%= t('select_brand', default: 'Bir marka seçin') %></option>
+      <% available_brands.each do |brand| %>
+        <option value="<%= brand.id %>"><%= brand.name %></option>
+      <% end %>
+    </select>
+  </div>
+<% end %>

@@ -27,6 +27,34 @@
 #  fk_rails_...  (account_id => accounts.id)
 #
 class Brand < ApplicationRecord
+  # DOCSIGN-CUSTOM: default brand catalog seeded on every new Account (see Account#seed_default_brands)
+  DEFAULT_SEEDS = [
+    {
+      slug: 'academia_united',
+      name: 'Academia United',
+      logo_path: 'brands/academia_united.svg',
+      primary_color: '#1E40AF',
+      email_from_name: 'Academia United',
+      email_intro_text: 'Size Academia United tarafından imzalamanız gereken bir belge gönderildi.'
+    },
+    {
+      slug: 'linguland',
+      name: 'Linguland',
+      logo_path: 'brands/linguland.svg',
+      primary_color: '#15803D',
+      email_from_name: 'Linguland',
+      email_intro_text: 'Size Linguland tarafından imzalamanız gereken bir belge gönderildi.'
+    },
+    {
+      slug: 'topstudy',
+      name: 'Topstudy',
+      logo_path: 'brands/topstudy.svg',
+      primary_color: '#EA580C',
+      email_from_name: 'Topstudy',
+      email_intro_text: 'Size Topstudy tarafından imzalamanız gereken bir belge gönderildi.'
+    }
+  ].freeze
+
   belongs_to :account
   has_many :submissions, dependent: :nullify
 
