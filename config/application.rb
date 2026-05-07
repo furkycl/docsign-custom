@@ -25,8 +25,9 @@ module DocuSeal
 
     config.active_storage.draw_routes = ENV['MULTITENANT'] != 'true'
 
+    # DOCSIGN-CUSTOM: 'tr' eklendi (config/locales/tr.docsign.yml ile)
     config.i18n.available_locales = %i[en en-US en-GB es-ES fr-FR pt-PT de-DE it-IT nl-NL
-                                       es it de fr nl pl uk cs pt he ar ko ja]
+                                       es it de fr nl pl uk cs pt he ar ko ja tr]
     config.i18n.fallbacks = [:en]
 
     config.exceptions_app = ->(env) { ErrorsController.action(:show).call(env) }
