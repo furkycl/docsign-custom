@@ -6,7 +6,7 @@
 
 services:
   postgres:
-    image: postgres:18
+    image: postgres:16-alpine
     ports:
       - "5432:5432"
     environment:
@@ -32,7 +32,7 @@ services:
       - node_modules:/app/node_modules
     working_dir: /app
     ports:
-      - "3000:3000"
+      - "5678:3000"  # host 5678 -> container 3000 (avoid conflicts with other local servers)
       - "3035:3035"  # shakapacker dev server
     environment:
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/docuseal_dev
@@ -42,8 +42,10 @@ services:
       BINDING: 0.0.0.0
     command: >
       sh -c "
-      apk add --no-cache nodejs yarn build-base postgresql-dev tzdata git curl chromium &&
-      bundle install &&
+      apk add --no-cache nodejs yarn build-base git libpq-dev yaml-dev tzdata curl libpq vips vips-heif redis &&
+      bundle config set --local force_ruby_platform false &&
+      bundle lock --add-platform aarch64-linux-musl x86_64-linux-musl &&
+      bundle install --jobs 4 &&
       yarn install &&
       bundle exec rails db:create 2>/dev/null || true &&
       bundle exec rails db:migrate &&

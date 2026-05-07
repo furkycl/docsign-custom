@@ -1,0 +1,74 @@
+# DOCSIGN-CUSTOM: Türkçe çeviriler ve marka modülü stringleri
+# Hesap locale'i 'tr' yapılırsa bu çeviriler aktif olur (Account.locale = 'tr').
+# Üst-tarafa hangi anahtarları eklediğimiz upstream'in i18n.yml'ini etkilemez —
+# bağımsız dosya olduğu için merge çakışması olmaz.
+
+tr:
+  # Brand modülü (özelleştirme)
+  brand: Marka
+  select_brand: Bir marka seçin
+  view_and_sign_document: Belgeyi Görüntüle ve İmzala
+  brands:
+    default_email_intro: "Size %{brand} tarafından imzalamanız gereken bir belge gönderildi."
+
+  # Genel UI
+  hi_there: Merhaba
+  thanks: Teşekkürler
+  please_contact_us_by_replying_to_this_email_if_you_have_any_questions: "Sorularınız varsa bu e-postayı yanıtlayarak bize ulaşabilirsiniz."
+
+  # Şablon ve imza akışı
+  review_and_sign: İncele ve İmzala
+  review_and_submit: İncele ve Gönder
+  sign_now: Şimdi İmzala
+  draw_signature: İmza Çiz
+  signature_uploaded: İmza yüklendi
+  clear: Temizle
+  submit: Gönder
+  download: İndir
+  view: Görüntüle
+  archive: Arşivle
+  remove: Kaldır
+  edit: Düzenle
+  copy: Kopyala
+  copy_link: Linki Kopyala
+  copied: Kopyalandı
+
+  # E-posta davet metinleri
+  you_have_been_invited_to_sign_the_name: "%{name} belgesini imzalamanız için davet edildiniz."
+  you_have_been_invited_to_submit_the_name_form: "%{name} formunu doldurmanız için davet edildiniz."
+  you_are_invited_to_sign_a_document: "Bir belgeyi imzalamanız için davetlisiniz"
+  you_are_invited_to_submit_a_form: "Bir formu doldurmanız için davetlisiniz"
+  email_verification: E-posta doğrulama
+  your_document_copy: Belge kopyanız
+
+  # Tamamlanma ve red bildirimleri
+  template_name_has_been_completed_by_submitters: "%{template_name} alıcılar tarafından imzalandı"
+  name_declined_by_submitter: "%{name} belgesi %{submitter} tarafından reddedildi"
+  return_back_to_your_desktop_device_to_complete_the_form_or_continue_on_mobile_html: "Formu tamamlamak için masaüstü cihazınıza dönün veya mobilde devam edin: %{link}"
+
+  # Submitter durum etiketleri (badge metinleri)
+  awaiting: Bekleniyor
+  sent: Gönderildi
+  opened: Açıldı
+  completed: İmzalandı
+  declined: Reddedildi
+  expired: Süresi Doldu
+
+  # Şablonlar ve gönderimler ekranı
+  add_recipients: Alıcı Ekle
+  add_new_recipients: Yeni Alıcılar Ekle
+  new_recipients_have_been_added: Yeni alıcılar eklendi
+  via_email: E-posta ile
+  via_phone: Telefon ile
+  detailed: Detaylı
+  upload_list: Liste Yükle
+  email: E-posta
+  name: Ad
+  optional: opsiyonel
+  type_emails_here: E-posta adreslerini buraya yazın
+  add_new: Yeni Ekle
+
+  # Submission silme/arşiv mesajları
+  submission_has_been_removed: Gönderim silindi
+  submission_has_been_archived: Gönderim arşivlendi
+  submission_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_: "Gönderim silme işlemi geri alınamaz ve ilişkili tüm imzalı belgeler kalıcı olarak silinecektir. Emin misiniz?"

@@ -9,6 +9,8 @@ class SubmitterMailer < ApplicationMailer
   def invitation_email(submitter)
     @current_account = submitter.submission.account
     @submitter = submitter
+    # DOCSIGN-CUSTOM: brand context for branded invitation email (logo, intro, button color)
+    @brand = submitter.submission.brand
 
     if submitter.preferences['email_message_uuid']
       @email_message = submitter.account.email_messages.find_by(uuid: submitter.preferences['email_message_uuid'])
@@ -242,6 +244,13 @@ class SubmitterMailer < ApplicationMailer
   end
 
   def from_address_for_submitter(submitter)
+    # DOCSIGN-CUSTOM: brand-specific From header takes precedence when configured
+    brand = submitter.submission.brand
+    if brand && brand.email_from_address.present?
+      put_metadata('brand_id' => brand.id)
+      return brand.from_header
+    end
+
     if submitter.submission.source.in?(%w[api embed]) &&
        (from_email = AccountConfig.find_by(account: submitter.account, key: 'integration_from_email')&.value.presence)
       user = submitter.account.users.find_by(email: from_email)

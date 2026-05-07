@@ -20,6 +20,7 @@
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  account_id          :bigint           not null
+#  brand_id            :bigint
 #  created_by_user_id  :bigint
 #  template_id         :bigint
 #
@@ -28,12 +29,14 @@
 #  index_submissions_on_account_id_and_id                           (account_id,id)
 #  index_submissions_on_account_id_and_template_id_and_id           (account_id,template_id,id) WHERE (archived_at IS NULL)
 #  index_submissions_on_account_id_and_template_id_and_id_archived  (account_id,template_id,id) WHERE (archived_at IS NOT NULL)
+#  index_submissions_on_brand_id                                    (brand_id)
 #  index_submissions_on_created_by_user_id                          (created_by_user_id)
 #  index_submissions_on_slug                                        (slug) UNIQUE
 #  index_submissions_on_template_id                                 (template_id)
 #
 # Foreign Keys
 #
+#  fk_rails_...  (brand_id => brands.id)
 #  fk_rails_...  (created_by_user_id => users.id)
 #  fk_rails_...  (template_id => templates.id)
 #

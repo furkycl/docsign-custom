@@ -2,7 +2,8 @@
 <html data-theme="docuseal" lang="en">
   <head>
     <%= render 'layouts/head_tags' %>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%# DOCSIGN-CUSTOM: prevent zoom + scroll when signing on mobile %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <%= csrf_meta_tags %>
     <% if ENV['ROLLBAR_CLIENT_TOKEN'] %>
       <meta name="rollbar-token" content="<%= ENV.fetch('ROLLBAR_CLIENT_TOKEN', nil) %>">
@@ -11,6 +12,33 @@
       <%= javascript_pack_tag 'draw', defer: true %>
     <% end %>
     <%= stylesheet_pack_tag 'form', media: 'all' %>
+    <%# DOCSIGN-CUSTOM: lock body scroll while drawing on mobile (prevent page from sliding when finger touches canvas) %>
+    <style>
+      html, body {
+        overflow: hidden;
+        overscroll-behavior: none;
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+        margin: 0;
+        padding: 0;
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+      canvas {
+        touch-action: none;
+        -ms-touch-action: none;
+      }
+    </style>
+    <script>
+      // DOCSIGN-CUSTOM: extra defense — block touchmove outside the canvas
+      document.addEventListener('touchmove', function (e) {
+        if (e.target && e.target.tagName !== 'CANVAS') {
+          e.preventDefault();
+        }
+      }, { passive: false });
+    </script>
   </head>
   <body>
     <% field = (@submitter.submission.template_fields || @submitter.template.fields).find { |f| f['type'] == 'signature' && f['uuid'].starts_with?(params[:f]) } %>

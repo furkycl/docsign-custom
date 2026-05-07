@@ -4,23 +4,23 @@
 #
 # Table name: brands
 #
-#  id                  :bigint           not null, primary key
-#  active              :boolean          default(TRUE), not null
-#  email_from_address  :string
-#  email_from_name     :string
-#  email_intro_text    :text
-#  logo_path           :string           not null
-#  name                :string           not null
-#  primary_color       :string           default("#1F2937"), not null
-#  slug                :string           not null
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  account_id          :bigint           not null
+#  id                 :bigint           not null, primary key
+#  active             :boolean          default(TRUE), not null
+#  email_from_address :string
+#  email_from_name    :string
+#  email_intro_text   :text
+#  logo_path          :string           not null
+#  name               :string           not null
+#  primary_color      :string           default("#1F2937"), not null
+#  slug               :string           not null
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  account_id         :bigint           not null
 #
 # Indexes
 #
-#  index_brands_on_account_id            (account_id)
-#  index_brands_on_account_id_and_slug   (account_id,slug) UNIQUE
+#  index_brands_on_account_id           (account_id)
+#  index_brands_on_account_id_and_slug  (account_id,slug) UNIQUE
 #
 # Foreign Keys
 #

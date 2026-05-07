@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_16_100000) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_07_100100) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "pg_catalog.plpgsql"
@@ -96,6 +96,22 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_16_100000) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "brands", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.boolean "active", default: true, null: false
+    t.datetime "created_at", null: false
+    t.string "email_from_address"
+    t.string "email_from_name"
+    t.text "email_intro_text"
+    t.string "logo_path", null: false
+    t.string "name", null: false
+    t.string "primary_color", default: "#1F2937", null: false
+    t.string "slug", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "slug"], name: "index_brands_on_account_id_and_slug", unique: true
+    t.index ["account_id"], name: "index_brands_on_account_id"
   end
 
   create_table "completed_documents", force: :cascade do |t|
@@ -349,6 +365,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_16_100000) do
   create_table "submissions", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.datetime "archived_at"
+    t.bigint "brand_id"
     t.datetime "created_at", null: false
     t.bigint "created_by_user_id"
     t.datetime "expire_at"
@@ -367,6 +384,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_16_100000) do
     t.index ["account_id", "id"], name: "index_submissions_on_account_id_and_id"
     t.index ["account_id", "template_id", "id"], name: "index_submissions_on_account_id_and_template_id_and_id", where: "(archived_at IS NULL)"
     t.index ["account_id", "template_id", "id"], name: "index_submissions_on_account_id_and_template_id_and_id_archived", where: "(archived_at IS NOT NULL)"
+    t.index ["brand_id"], name: "index_submissions_on_brand_id"
     t.index ["created_by_user_id"], name: "index_submissions_on_created_by_user_id"
     t.index ["slug"], name: "index_submissions_on_slug", unique: true
     t.index ["template_id"], name: "index_submissions_on_template_id"
@@ -560,6 +578,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_16_100000) do
   add_foreign_key "account_linked_accounts", "accounts", column: "linked_account_id"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "brands", "accounts"
   add_foreign_key "document_generation_events", "submitters"
   add_foreign_key "document_metadata", "accounts"
   add_foreign_key "dynamic_document_versions", "dynamic_documents"
@@ -577,6 +596,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_16_100000) do
   add_foreign_key "submission_events", "accounts"
   add_foreign_key "submission_events", "submissions"
   add_foreign_key "submission_events", "submitters"
+  add_foreign_key "submissions", "brands"
   add_foreign_key "submissions", "templates"
   add_foreign_key "submissions", "users", column: "created_by_user_id"
   add_foreign_key "submitter_versions", "submitters"

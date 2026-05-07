@@ -1,4 +1,5 @@
-<% status_badges = { 'awaiting' => 'badge-info', 'sent' => 'badge-info', 'completed' => 'badge-success', 'opened' => 'badge-warning', 'declined' => 'badge-error' } %>
+<%# DOCSIGN-CUSTOM: status badge palette — gray for outgoing/in-flight, green for completed, red for declined %>
+<% status_badges = { 'awaiting' => 'badge-neutral', 'sent' => 'badge-neutral', 'completed' => 'badge-success', 'opened' => 'badge-neutral', 'declined' => 'badge-error' } %>
 <div class="bg-base-200 rounded-2xl flex flex-col sm:flex-row items-strech">
   <% if local_assigns[:with_template] %>
     <% template = submission.template %>
