@@ -35,7 +35,7 @@ RSpec.describe Brand do
     subject(:brand) do
       described_class.new(
         account: account,
-        slug: 'academia_united',
+        slug: 'spec_test_brand',
         name: 'Academia United',
         logo_path: 'brands/academia_united.svg',
         primary_color: '#1E40AF'
@@ -51,7 +51,7 @@ RSpec.describe Brand do
     end
 
     it 'rejects slugs with spaces or uppercase' do
-      brand.slug = 'Academia United'
+      brand.slug = 'Spec Test Brand'
       expect(brand).not_to be_valid
     end
 
@@ -59,7 +59,7 @@ RSpec.describe Brand do
       brand.save!
       duplicate = described_class.new(
         account: account,
-        slug: 'academia_united',
+        slug: 'spec_test_brand',
         name: 'Other',
         logo_path: 'brands/x.svg',
         primary_color: '#000000'
@@ -72,7 +72,7 @@ RSpec.describe Brand do
       other_account = create(:account)
       duplicate = described_class.new(
         account: other_account,
-        slug: 'academia_united',
+        slug: 'spec_test_brand',
         name: 'Academia United',
         logo_path: 'brands/academia_united.svg',
         primary_color: '#1E40AF'

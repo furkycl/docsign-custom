@@ -42,7 +42,16 @@ services:
       BINDING: 0.0.0.0
     command: >
       sh -c "
-      apk add --no-cache nodejs yarn build-base git libpq-dev yaml-dev tzdata curl libpq vips vips-heif redis &&
+      apk add --no-cache nodejs yarn build-base git libpq-dev yaml-dev tzdata curl wget libpq vips vips-heif redis &&
+      if [ ! -f /usr/lib/libpdfium.so ]; then
+        echo '==> Downloading libpdfium...';
+        ARCH=$$(uname -m | sed 's/x86_64/x64/;s/aarch64/arm64/');
+        wget -q -O /tmp/pdfium.tgz \"https://github.com/bblanchon/pdfium-binaries/releases/latest/download/pdfium-linux-musl-$${ARCH}.tgz\" &&
+        mkdir -p /tmp/pdfium &&
+        tar -xzf /tmp/pdfium.tgz -C /tmp/pdfium &&
+        cp /tmp/pdfium/lib/libpdfium.so /usr/lib/libpdfium.so &&
+        echo '==> libpdfium installed';
+      fi &&
       bundle config set --local force_ruby_platform false &&
       bundle lock --add-platform aarch64-linux-musl x86_64-linux-musl &&
       bundle install --jobs 4 &&

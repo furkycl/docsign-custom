@@ -10,8 +10,11 @@ FactoryBot.define do
     primary_color { '#1E40AF' }
     active { true }
 
+    # Use _test suffix on slug to avoid clash with the 3 brands that
+    # Account#after_create auto-seeds (academia_united, linguland, topstudy).
+    # Names stay clean for assertions like `include('Linguland')`.
     trait :linguland do
-      slug { 'linguland' }
+      sequence(:slug) { |n| "linguland_test_#{n}" }
       name { 'Linguland' }
       logo_path { 'brands/linguland.svg' }
       primary_color { '#15803D' }
@@ -20,7 +23,7 @@ FactoryBot.define do
     end
 
     trait :topstudy do
-      slug { 'topstudy' }
+      sequence(:slug) { |n| "topstudy_test_#{n}" }
       name { 'Topstudy' }
       logo_path { 'brands/topstudy.svg' }
       primary_color { '#EA580C' }

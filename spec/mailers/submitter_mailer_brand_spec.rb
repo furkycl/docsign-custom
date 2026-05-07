@@ -4,11 +4,21 @@ require 'rails_helper'
 
 # DOCSIGN-CUSTOM: brand-aware invitation email behavior
 RSpec.describe SubmitterMailer do
+  # Mailer tests don't need real PDF processing — stub it out so tests don't depend on libpdfium
+  before do
+    allow(Templates::ProcessDocument).to receive(:call) { |attachment, _data| attachment }
+  end
+
+  # Use only_field_types to avoid spinning up file/payment fields (faster)
+  let(:account) { create(:account) }
+  let(:author) { create(:user, account: account) }
+
   describe '#invitation_email with brand' do
-    let(:account) { create(:account) }
-    let(:template) { create(:template, account:) }
+    let(:template) { create(:template, account:, author:, only_field_types: %w[text signature]) }
     let(:brand) { create(:brand, :linguland, account:) }
-    let(:submission) { create(:submission, :with_submitters, template:, brand:) }
+    let(:submission) do
+      create(:submission, :with_submitters, template:, brand:, created_by_user: author)
+    end
     let(:submitter) { submission.submitters.first }
 
     it 'renders the brand name in the body' do
@@ -33,9 +43,10 @@ RSpec.describe SubmitterMailer do
   end
 
   describe '#invitation_email without brand (fallback)' do
-    let(:account) { create(:account) }
-    let(:template) { create(:template, account:) }
-    let(:submission) { create(:submission, :with_submitters, template:, brand: nil) }
+    let(:template) { create(:template, account:, author:, only_field_types: %w[text signature]) }
+    let(:submission) do
+      create(:submission, :with_submitters, template:, brand: nil, created_by_user: author)
+    end
     let(:submitter) { submission.submitters.first }
 
     it 'does NOT render any brand-specific markup' do
