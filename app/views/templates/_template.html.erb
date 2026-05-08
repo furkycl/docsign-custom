@@ -30,13 +30,7 @@
   </a>
   <div class="absolute top-0 bottom-0 w-0 items-center hidden md:group-hover:flex" style="right: 37px" data-targets="dashboard-dropzone.hiddenOnDrag">
     <div class="space-y-1">
-      <% if can?(:update, template) && !template.archived_at? && template.account_id == current_account.id %>
-        <span class="tooltip tooltip-left" data-tip="<%= t('move') %>">
-          <a href="<%= edit_template_folder_path(template.id) %>" data-turbo-frame="modal" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle">
-            <%= svg_icon('folder_share', class: 'w-4 h-4') %>
-          </a>
-        </span>
-      <% end %>
+      <%# DOCSIGN-CUSTOM: removed "Move folder" and "Clone" hover buttons (folder mgmt + cloning unused in internal flow) %>
       <% if template.archived_at? && can?(:update, template) %>
         <span class="tooltip tooltip-left" data-tip="<%= t('restore') %>">
           <%= button_to template_restore_index_path(template), class: 'btn btn-xs hover:btn-outline bg-base-200 btn-circle' do %>
@@ -48,13 +42,6 @@
         <span class="tooltip tooltip-left" data-tip="<%= t('edit') %>">
           <a href="<%= edit_template_path(template) %>" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle">
             <%= svg_icon('pencil', class: 'w-4 h-4') %>
-          </a>
-        </span>
-      <% end %>
-      <% if can?(:create, template) %>
-        <span class="tooltip tooltip-left" data-tip="<%= t('clone') %>">
-          <a href="<%= new_template_clone_path(template) %>" data-turbo-frame="modal" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle">
-            <%= svg_icon('copy', class: 'w-4 h-4') %>
           </a>
         </span>
       <% end %>
