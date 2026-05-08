@@ -54,11 +54,8 @@
         </div>
       </a>
     </div>
-    <div class="flex items-end flex-col md:flex-row gap-2 w-full md:w-fit">
-      <%= render 'submissions_filters/applied_filters', filter_params: %>
-      <%= render 'submissions_filters/filter_button', filter_params: %>
-      <%= render 'submissions_filters/actions', filter_params: %>
-    </div>
+    <%# DOCSIGN-CUSTOM: removed advanced filters / applied-filters display / bulk actions dropdown %>
+    <%# Status tabs above (All / Pending / Completed) are sufficient for internal-tool use. %>
   </div>
 <% end %>
 <% if @pagy.count.nil? || @pagy.count > 0 %>

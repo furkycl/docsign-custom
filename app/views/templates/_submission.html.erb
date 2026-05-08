@@ -52,13 +52,7 @@
               <a href="<%= submission_path(submission) %>" class="text-lg break-all peer">
                 <%= submitter.name || submitter.email || submitter.phone %>
               </a>
-              <% if can?(:update, submission) && !submitter.start_form_submission_events.any? && !submission.archived_at? && !submission.expired? && !submitter.declined_at? %>
-                <span class="pl-0.5 tooltip tooltip-top md:opacity-0 md:hover:opacity-100 md:peer-hover:opacity-100" data-tip="<%= t('edit') %>">
-                  <%= link_to edit_submitter_path(submitter), class: 'shrink-0', data: { turbo_frame: 'modal' } do %>
-                    <%= svg_icon('pencil', class: 'w-5 h-5') %>
-                  <% end %>
-                </span>
-              <% end %>
+              <%# DOCSIGN-CUSTOM: edit-submitter pencil hidden for cleaner internal UI %>
             </span>
           </span>
         </div>
@@ -92,9 +86,7 @@
               </a>
             </div>
           <% else %>
-            <div class="flex-1 md:flex-none">
-              <%= render 'shared/clipboard_copy', text: submit_form_url(slug: submitter.slug, host: form_link_host), class: 'btn btn-sm btn-neutral text-white md:w-36 flex z-[1]', icon_class: 'w-6 h-6 text-white', copy_title: t('copy_link').length < 10 ? t('copy_link') : t('copy'), copy_title_md: t('copy'), copied_title_md: t('copied') %>
-            </div>
+            <%# DOCSIGN-CUSTOM: copy-link button hidden — admins use the View page instead %>
           <% end %>
         <% end %>
         <div class="flex-1 md:flex-none z-[1]">
@@ -102,11 +94,7 @@
             <%= t('view') %>
           </a>
         </div>
-        <% if !submission.archived_at? && !template&.archived_at? && can?(:destroy, submission) %>
-          <span data-tip="<%= t('archive') %>" class="sm:tooltip tooltip-top">
-            <%= button_to button_title(title: nil, disabled_with: nil, icon: svg_icon('archive', class: 'w-6 h-6'), icon_disabled: svg_icon('loader', class: 'w-6 h-6 animate-spin')), submission_path(submission), class: 'btn btn-outline btn-sm w-full md:w-fit', form: { class: 'flex' }, title: t('archive'), method: :delete %>
-          </span>
-        <% end %>
+        <%# DOCSIGN-CUSTOM: inline archive button hidden — kept on the submission detail page %>
         <% if local_assigns[:archived] && can?(:destroy, submission) %>
           <span data-tip="<%= t('remove') %>" class="sm:tooltip tooltip-top">
             <%= button_to button_title(title: nil, disabled_with: nil, icon: svg_icon('trash', class: 'w-6 h-6'), icon_disabled: svg_icon('loader', class: 'w-6 h-6 animate-spin')), submission_path(submission, permanently: true), class: 'btn btn-outline btn-sm w-full md:w-fit', form: { class: 'flex' }, title: t('remove'), method: :delete, data: { turbo_confirm: t('submission_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_') } %>
@@ -145,13 +133,8 @@
                     <a href="<%= submission_path(submission) %>" class="text-lg break-all peer">
                       <%= submitter.name || submitter.email || submitter.phone %>
                     </a>
-                    <% if can?(:update, submission) && !submitter.start_form_submission_events.any? && !submission.archived_at? && !submission.expired? && !submitter.declined_at? %>
-                      <span class="pl-0.5 tooltip tooltip-top md:opacity-0 md:hover:opacity-100 md:peer-hover:opacity-100" data-tip="<%= t('edit') %>">
-                        <%= link_to edit_submitter_path(submitter), class: 'shrink-0', data: { turbo_frame: 'modal' } do %>
-                          <%= svg_icon('pencil', class: 'w-5 h-5') %>
-                        <% end %>
-                      </span>
-                    <% end %>
+                    <%# DOCSIGN-CUSTOM: edit-submitter pencil hidden (multi-submitter row) %>
+
                   </span>
                 </span>
                 <% if submitter.completed_at? && !is_submission_completed %>
@@ -177,7 +160,7 @@
                         </span>
                       </a>
                     <% else %>
-                      <%= render 'shared/clipboard_copy', text: submit_form_url(slug: submitter.slug, host: form_link_host), class: 'absolute md:relative top-0 right-0 btn btn-xs text-xs btn-neutral text-white w-28 md:w-36 flex z-[1]', icon_class: 'w-4 h-4 text-white', copy_title: t('copy_link'), copy_title_md: t('copy_link').length < 10 ? t('copy_link') : t('copy'), copied_title_md: t('copied') %>
+                      <%# DOCSIGN-CUSTOM: copy-link button hidden (multi-submitter row) %>
                     <% end %>
                   </div>
                 <% end %>
@@ -209,11 +192,7 @@
             <%= t('view') %>
           </a>
         </div>
-        <% if !submission.archived_at? && !template&.archived_at? %>
-          <span data-tip="<%= t('archive') %>" class="sm:tooltip tooltip-top">
-            <%= button_to button_title(title: nil, disabled_with: nil, icon: svg_icon('archive', class: 'w-6 h-6'), icon_disabled: svg_icon('loader', class: 'w-6 h-6 animate-spin')), submission_path(submission), class: 'btn btn-outline btn-sm w-full md:w-fit', form: { class: 'flex' }, title: t('archive'), method: :delete %>
-          </span>
-        <% end %>
+        <%# DOCSIGN-CUSTOM: inline archive button hidden (multi-submitter row) — archive on detail page only %>
         <% if local_assigns[:archived] && can?(:destroy, submission) %>
           <span data-tip="<%= t('remove') %>" class="sm:tooltip tooltip-top">
             <%= button_to button_title(title: nil, disabled_with: nil, icon: svg_icon('trash', class: 'w-6 h-6'), icon_disabled: svg_icon('loader', class: 'w-6 h-6 animate-spin')), submission_path(submission, permanently: true), class: 'btn btn-outline btn-sm w-full md:w-fit', form: { class: 'flex' }, title: t('remove'), method: :delete, data: { turbo_confirm: t('submission_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_') } %>
