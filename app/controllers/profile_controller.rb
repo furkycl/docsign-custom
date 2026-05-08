@@ -31,6 +31,19 @@ class ProfileController < ApplicationController
     end
   end
 
+  # DOCSIGN-CUSTOM: account-level locale switcher (TR/EN ve diğerleri)
+  def update_locale
+    new_locale = params[:locale].to_s
+    if I18n.available_locales.map(&:to_s).include?(new_locale)
+      current_account.update!(locale: new_locale)
+      redirect_to settings_profile_index_path,
+                  notice: I18n.t('language_has_been_updated', default: 'Dil güncellendi')
+    else
+      redirect_to settings_profile_index_path,
+                  alert: I18n.t('invalid_locale', default: 'Geçersiz dil seçimi')
+    end
+  end
+
   private
 
   def contact_params

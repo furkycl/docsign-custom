@@ -6,12 +6,15 @@ Rails.backtrace_cleaner.remove_silencers!
 
 Rails.application.configure do
   config.after_initialize do
+    # DOCSIGN-CUSTOM: keep Bullet only as silent logger — UI footer/console hidden
+    # so customer demos and stakeholder screenshares look clean. Enable
+    # `add_footer` locally if you actively chase N+1 queries during development.
     Bullet.enable        = true
     Bullet.alert         = false
     Bullet.bullet_logger = true
-    Bullet.console       = true
+    Bullet.console       = false
     Bullet.rails_logger  = true
-    Bullet.add_footer    = true
+    Bullet.add_footer    = false
   end
 
   # Settings specified here will take precedence over those in config/application.rb.

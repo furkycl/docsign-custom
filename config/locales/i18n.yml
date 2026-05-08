@@ -20,6 +20,7 @@ en: &en
   language_ar: العربية
   language_ko: 한국어
   language_ja: 日本語
+  language_tr: Türkçe
   add_from_google_drive: Add from Google Drive
   or_add_from: Or add from
   upload_a_new_document: Upload a New Document

@@ -29,6 +29,34 @@
       </div>
     <% end %>
     <%= render 'email_configs' %>
+
+    <%# DOCSIGN-CUSTOM: language switcher %>
+    <p class="text-2xl font-bold mt-8 mb-4">
+      <%= t('language', default: 'Dil') %>
+    </p>
+    <%= form_with url: update_locale_settings_profile_index_path, method: :patch, html: { class: 'space-y-4', autocomplete: 'off' } do |f| %>
+      <div class="form-control">
+        <% locale_options = [
+          ['Türkçe', 'tr'],
+          ['English', 'en'],
+          ['English (US)', 'en-US'],
+          ['English (UK)', 'en-GB'],
+          ['Español', 'es-ES'],
+          ['Français', 'fr-FR'],
+          ['Deutsch', 'de-DE'],
+          ['Italiano', 'it-IT'],
+          ['Nederlands', 'nl-NL'],
+          ['Português', 'pt-PT']
+        ] %>
+        <%= select_tag :locale,
+                       options_for_select(locale_options, current_account.locale.to_s),
+                       class: 'base-input !h-10 w-full' %>
+      </div>
+      <div class="form-control">
+        <%= f.button button_title(title: t('update', default: 'Güncelle'), disabled_with: t('updating', default: 'Güncelleniyor')), class: 'base-button' %>
+      </div>
+    <% end %>
+
     <p class="text-2xl font-bold mt-8 mb-4">
       <%= t('signature') %>
     </p>

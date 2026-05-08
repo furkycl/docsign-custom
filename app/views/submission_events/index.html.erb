@@ -40,6 +40,12 @@
                 <%= svg_icon("device_#{device}", class: 'w-4 h-4') %>
               </span>
             <% end %>
+            <%# DOCSIGN-CUSTOM: show submitter IP address next to device icon %>
+            <% if (ip = event.data['ip']).present? %>
+              <span class="text-xs leading-none text-base-content/50 font-mono">
+                <%= ip %>
+              </span>
+            <% end %>
           </div>
           <p class="text-base-content/80 mt-1">
             <% if event.event_type == 'complete_verification' %>

@@ -2,73 +2,1390 @@
 # Hesap locale'i 'tr' yapılırsa bu çeviriler aktif olur (Account.locale = 'tr').
 # Üst-tarafa hangi anahtarları eklediğimiz upstream'in i18n.yml'ini etkilemez —
 # bağımsız dosya olduğu için merge çakışması olmaz.
+#
+# Çevrilmemiş anahtarlar Rails fallback üzerinden :en'e düşer.
 
 tr:
+  # ============================================================
   # Brand modülü (özelleştirme)
+  # ============================================================
   brand: Marka
   select_brand: Bir marka seçin
   view_and_sign_document: Belgeyi Görüntüle ve İmzala
   brands:
     default_email_intro: "Size %{brand} tarafından imzalamanız gereken bir belge gönderildi."
 
-  # Genel UI
+  # ============================================================
+  # Dil isimleri
+  # ============================================================
+  language_en: İngilizce
+  language_en-US: İngilizce (ABD)
+  language_en-GB: İngilizce (BK)
+  language_es-ES: İspanyolca
+  language_fr-FR: Fransızca
+  language_pt-PT: Portekizce
+  language_de-DE: Almanca
+  language_nl-NL: Felemenkçe
+  language_es: İspanyolca
+  language_it: İtalyanca
+  language_de: Almanca
+  language_fr: Fransızca
+  language_pl: Lehçe
+  language_uk: Ukraynaca
+  language_cs: Çekçe
+  language_pt: Portekizce
+  language_he: İbranice
+  language_nl: Felemenkçe
+  language_ar: Arapça
+  language_ko: Korece
+  language_ja: Japonca
+
+  # ============================================================
+  # Genel UI / sık kullanılan kelimeler
+  # ============================================================
   hi_there: Merhaba
   thanks: Teşekkürler
+  hello_name: "Merhaba %{name}"
   please_contact_us_by_replying_to_this_email_if_you_have_any_questions: "Sorularınız varsa bu e-postayı yanıtlayarak bize ulaşabilirsiniz."
+  or: veya
+  add: Ekle
+  adding: Ekleniyor
+  add_new: Yeni Ekle
+  save: Kaydet
+  saving: Kaydediliyor
+  submit: Gönder
+  submitting: Gönderiliyor
+  send: Gönder
+  sending: Gönderiliyor
+  download: İndir
+  downloading: İndiriliyor
+  upload: Yükle
+  uploading: Yükleniyor
+  view: Görüntüle
+  edit: Düzenle
+  remove: Kaldır
+  removing: Kaldırılıyor
+  delete: Sil
+  copy: Kopyala
+  copied: Kopyalandı
+  copy_link: Linki Kopyala
+  copied_to_clipboard: Panoya Kopyalandı
+  copy_share_link: Paylaşım Linkini Kopyala
+  link: Bağlantı
+  archive: Arşivle
+  archiving: Arşivleniyor
+  archived: Arşivlendi
+  unarchive: Arşivden Çıkar
+  restore: Geri Yükle
+  restoring: Geri yükleniyor
+  clone: Çoğalt
+  rename: Yeniden Adlandır
+  move: Taşı
+  moving: taşınıyor
+  preview: Önizleme
+  exit_preview: Önizlemeden Çık
+  search: Ara
+  apply: Uygula
+  applying: Uygulanıyor
+  close: Kapat
+  back: Geri
+  exit: Çıkış
+  leave: Ayrıl
+  rotate: Döndür
+  resend: Tekrar Gönder
+  replace: Değiştir
+  loading: Yükleniyor
+  processing: İşleniyor
+  creating: Oluşturuluyor
+  create: Oluştur
+  start: Başla
+  starting: Başlatılıyor
+  test: Test
+  verify: Doğrula
+  print: Yazdır
+  status: Durum
+  default: Varsayılan
+  optional: opsiyonel
+  none: Yok
+  all: Tümü
+  shared: paylaşıldı
+  general: Genel
+  pro: Pro
+  private: Özel
+  test_mode: Test modu
+  unlimited: Sınırsız
+  required: Zorunlu
+  not_specified: Belirtilmemiş
+  are_you_sure_: Emin misiniz?
+  not_found: Bulunamadı
 
-  # Şablon ve imza akışı
+  # ============================================================
+  # Alıcı / submitter / imzalayan akışı
+  # ============================================================
   review_and_sign: İncele ve İmzala
   review_and_submit: İncele ve Gönder
   sign_now: Şimdi İmzala
+  sign_in_person: Yüz Yüze İmzala
+  sign_it_yourself: Kendin İmzala
+  sign_yourself: Belgeyi kendin imzala
   draw_signature: İmza Çiz
+  draw: Çiz
+  upload_signature: İmza Yükle
   signature_uploaded: İmza yüklendi
+  update_signature: İmzayı Güncelle
+  unable_to_save_signature: İmza kaydedilemedi.
+  signature_has_been_saved: İmza kaydedildi.
+  signature_has_been_removed: İmza kaldırıldı.
+  there_are_no_signatures: İmza bulunmuyor
+  initials: Paraf
+  upload_initials: Paraf Yükle
+  update_initials: Parafı Güncelle
+  unable_to_save_initials: Paraf kaydedilemedi.
+  initials_has_been_saved: Paraf kaydedildi.
+  initials_has_been_removed: Paraf kaldırıldı.
+  signature: İmza
+  signers: İmzalayanlar
+  signed: İmzalandı
+  signed_on_time: "%{time} tarihinde imzalandı"
+  completed_on_time: "%{time} tarihinde tamamlandı"
+  declined_on_time: "%{time} tarihinde reddedildi"
+  expire_on_time: "%{time} tarihinde sona erecek"
+  not_invited_yet: Henüz davet edilmedi
+  not_completed_yet: Henüz tamamlanmadı
   clear: Temizle
-  submit: Gönder
-  download: İndir
-  view: Görüntüle
-  archive: Arşivle
-  remove: Kaldır
-  edit: Düzenle
-  copy: Kopyala
-  copy_link: Linki Kopyala
-  copied: Kopyalandı
+  decline: Reddet
+  declined: Reddedildi
+  delegate: Devret
+  enter_the_email_address_of_the_person_you_want_to_delegate_to: Devretmek istediğiniz kişinin e-posta adresini girin
+  decline_reason: Red gerekçesi
+  provide_a_reason: Bir gerekçe belirtin
+  notify_the_sender_with_the_reason_you_declined: Reddetme gerekçenizi gönderene bildir
+  form_has_been_declined_on_html: 'Form <span class="font-semibold">%{time}</span> tarihinde reddedildi'
+  document_has_been_delegated_on_html: 'Belge <span class="font-semibold">%{time}</span> tarihinde devredildi'
+  name_declined_by_submitter: '"%{name}" %{submitter} tarafından reddedildi'
+  name_declined_by_submitter_with_the_following_reason: '"%{name}" %{submitter} tarafından şu gerekçeyle reddedildi:'
+  completed_successfully: Başarıyla Tamamlandı
+  resubmit: Yeniden Gönder
+  document_has_been_signed_already: Belge zaten imzalandı
+  form_has_been_submitted_already: Form zaten gönderildi
+  form_has_been_completed_already: Form zaten tamamlanmıştı.
+  form_has_been_archived: Form arşivlendi.
+  form_has_been_expired: Formun süresi doldu.
+  form_has_been_declined: Form reddedildi.
+  form_has_been_deleted_by_html: 'Form <span class="font-semibold">%{name}</span> tarafından silindi.'
+  form_expired_at_html: 'Formun süresi <span class="font-semibold">%{time}</span> tarihinde dolmuştur'
+  send_copy_to_email: Kopyayı E-posta ile Gönder
+  download_documents: Belgeleri İndir
 
-  # E-posta davet metinleri
-  you_have_been_invited_to_sign_the_name: "%{name} belgesini imzalamanız için davet edildiniz."
-  you_have_been_invited_to_submit_the_name_form: "%{name} formunu doldurmanız için davet edildiniz."
+  provide_your_email_to_start: Başlamak için e-posta adresinizi girin
+  provide_your_email: E-posta adresinizi girin
+  provide_your_name_to_start: Başlamak için adınızı girin
+  provide_your_name: Adınızı girin
+  provide_your_phone_in_international_format_to_start: Başlamak için telefonunuzu uluslararası formatta girin
+  provide_your_phone_in_international_format: Telefonunuzu uluslararası formatta girin
+
+  invited_by_html: '<span class="font-semibold">%{name}</span> tarafından davet edildi'
+  digitally_signed_by: Dijital olarak imzalayan
+  role: Rol
+  reason: Gerekçe
+  enforce_recipients_order: Alıcı sırasını zorunlu kıl
+  page: Sayfa
+  page_number: "Sayfa %{number}"
+  recipients: Alıcılar
+  recipient_field: Alıcı alanı
+
+  # ============================================================
+  # Davet ve e-posta metinleri
+  # ============================================================
+  you_have_been_invited_to_sign_the_name: '"%{name}" belgesini imzalamanız için davet edildiniz.'
+  you_have_been_invited_to_submit_the_name_form: '"%{name}" formunu doldurmanız için davet edildiniz.'
   you_are_invited_to_sign_a_document: "Bir belgeyi imzalamanız için davetlisiniz"
   you_are_invited_to_submit_a_form: "Bir formu doldurmanız için davetlisiniz"
+  you_are_invited_to_sign_documents: "Belgeleri imzalamanız için davetlisiniz"
+  you_have_been_invited_to_submit_a_form: Bir formu doldurmanız için davet edildiniz
+  you_are_invited_to_product_name: "%{product_name} platformuna davetlisiniz"
+  you_have_been_invited_to_account_name_product_name_please_sign_up_using_the_link_below_: "%{account_name} %{product_name} platformuna davet edildiniz. Lütfen aşağıdaki bağlantı ile kayıt olun:"
   email_verification: E-posta doğrulama
+  phone_verification: Telefon doğrulama
   your_document_copy: Belge kopyanız
-
-  # Tamamlanma ve red bildirimleri
+  alternatively_you_can_review_and_download_your_copy_using_the_link_below: "Alternatif olarak, kopyanızı aşağıdaki bağlantıdan inceleyip indirebilirsiniz:"
+  please_check_the_copy_of_your_name_in_the_email_attachments: '"%{name}" kopyasını e-posta eklerinden kontrol edebilirsiniz.'
+  awaiting_completion_by_the_other_party: "Diğer tarafın tamamlaması bekleniyor"
   template_name_has_been_completed_by_submitters: "%{template_name} alıcılar tarafından imzalandı"
-  name_declined_by_submitter: "%{name} belgesi %{submitter} tarafından reddedildi"
-  return_back_to_your_desktop_device_to_complete_the_form_or_continue_on_mobile_html: "Formu tamamlamak için masaüstü cihazınıza dönün veya mobilde devam edin: %{link}"
+  name_has_been_completed_by_submitters: '"%{name}" %{submitters} tarafından tamamlandı.'
+  template_name_has_been_completed_by_submitters_html: '"<strong>{template.name}</strong>" <strong>{submission.submitters}</strong> tarafından tamamlandı'
+  please_check_the_copy_of_your_template_name_in_the_email_attachments_html: '"<strong>{template.name}</strong>" kopyasını e-posta eklerinden kontrol edebilirsiniz.'
+  you_have_been_invited_to_sign_the_template_name_html: '"<strong>{template.name}</strong>" belgesini imzalamanız için davet edildiniz.'
+  return_back_to_your_desktop_device_to_complete_the_form_or_continue_on_mobile_html: 'Formu tamamlamak için masaüstü cihazınıza dönün veya <a class="link" href="%{link}">mobilden devam edin</a>'
 
-  # Submitter durum etiketleri (badge metinleri)
+  submitter_invitation_email_sign_body: |
+    Merhaba,
+
+    "{template.name}" belgesini imzalamanız için davet edildiniz.
+
+    [İncele ve İmzala]({submitter.link})
+
+    Sorularınız varsa bu e-postayı yanıtlayarak bize ulaşabilirsiniz.
+
+    Teşekkürler,
+    {account.name}
+  submitter_completed_email_body: |
+    Merhaba,
+
+    "{template.name}" {submission.submitters} tarafından tamamlandı
+
+    {submission.link}
+  submitter_documents_copy_email_body: |
+    Merhaba,
+
+    "{template.name}" kopyanızı e-posta eklerinden kontrol edebilirsiniz.
+    Alternatif olarak, kopyanızı aşağıdaki bağlantıdan inceleyip indirebilirsiniz:
+
+    [{template.name}]({documents.link})
+
+    Teşekkürler,
+    {account.name}
+  submitter_invitation_sms_body_sign: '{account.name} sizi bir belgeyi imzalamak üzere davet etti: {submitter.link}'
+  verification_code_sms_body: 'Doğrulama kodu: {code}'
+  verification_code_code: 'Doğrulama kodu: %{code}'
+
+  # ============================================================
+  # Status / durum etiketleri
+  # ============================================================
   awaiting: Bekleniyor
   sent: Gönderildi
   opened: Açıldı
   completed: İmzalandı
-  declined: Reddedildi
+  declined_label: Reddedildi
   expired: Süresi Doldu
+  pending: Beklemede
+  pending_by_me: Bende beklemede
+  partially_completed: Kısmen tamamlandı
+  succeeded: Başarılı
+  failed: Başarısız
+  passed: Geçti
 
-  # Şablonlar ve gönderimler ekranı
+  # ============================================================
+  # Şablon ve gönderim ekranları
+  # ============================================================
   add_recipients: Alıcı Ekle
   add_new_recipients: Yeni Alıcılar Ekle
-  new_recipients_have_been_added: Yeni alıcılar eklendi
+  new_recipients_have_been_added: Yeni alıcılar eklendi.
   via_email: E-posta ile
   via_phone: Telefon ile
   detailed: Detaylı
   upload_list: Liste Yükle
   email: E-posta
   name: Ad
-  optional: opsiyonel
   type_emails_here: E-posta adreslerini buraya yazın
-  add_new: Yeni Ekle
+  add_recipients_html: '<span>Alıcı <span class="hidden md:inline">Ekle</span></span>'
+  or_embed_on_your_website: Veya web sitenize gömün
+  phone: Telefon
+  send_emails: E-posta gönder
+  edit_message: Mesajı düzenle
+  smtp_not_configured: SMTP Yapılandırılmamış
+  configure_smtp_settings_in_order_to_send_emails_: 'E-posta gönderebilmek için SMTP ayarlarını yapılandırın:'
+  go_to_smtp_settings: SMTP Ayarlarına Git
+  save_as_default_template_message: Varsayılan şablon mesajı olarak kaydet
+  re_send_sms: SMS Tekrar Gönder
+  send_sms: SMS Gönder
+  preserve_order: Sırayı koru
+  add_without_sending: Göndermeden Ekle
+  re_send_email: E-postayı Tekrar Gönder
+  send_email: E-posta Gönder
+  email_has_been_sent: E-posta gönderildi.
+  email_has_been_sent_already: E-posta zaten gönderilmişti.
+  sms_has_been_sent: SMS gönderildi.
 
-  # Submission silme/arşiv mesajları
-  submission_has_been_removed: Gönderim silindi
-  submission_has_been_archived: Gönderim arşivlendi
-  submission_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_: "Gönderim silme işlemi geri alınamaz ve ilişkili tüm imzalı belgeler kalıcı olarak silinecektir. Emin misiniz?"
+  back_to_active: Aktife Dön
+  submissions: Gönderimler
+  templates: Şablonlar
+  document_templates_html: '<span class="hidden md:inline">Belge</span> Şablonları'
+  submissions_not_found: Gönderim Bulunamadı
+  view_archived: Arşivi Görüntüle
+  there_are_no_submissions: Gönderim yok
+  send_an_invitation_to_fill_and_complete_the_form: Formu doldurup tamamlamak için davet gönder
+  send_to_recipients: Alıcılara Gönder
+
+  templates_not_found: Şablon Bulunamadı
+  upload_new_document: Yeni Belge Yükle
+  clone_template: Şablonu Çoğalt
+  new_document_template: Yeni Belge Şablonu
+  document_name: Belge Adı
+  change_folder: Klasörü Değiştir
+  rename_folder: Klasörü Yeniden Adlandır
+  folder_name: Klasör Adı
+  folder: Klasör
+  home: Ana Sayfa
+  create_a_new_folder: Yeni Klasör Oluştur
+  move_into_folder: Klasöre Taşı
+  new_folder_name: Yeni Klasör Adı
+  new_subfolder_name: Yeni Alt Klasör Adı
+  change_parent_folder: Üst Klasörü Değiştir
+  folder_name_has_been_updated: Klasör adı güncellendi.
+  unable_to_rename_folder: Klasör yeniden adlandırılamadı.
+
+  template_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_: "Şablon silme işlemi geri alınamaz ve ilişkili tüm imzalı belgeler kalıcı olarak silinir. Emin misiniz?"
+  submission_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_: "Gönderim silme işlemi geri alınamaz ve ilişkili tüm imzalı belgeler kalıcı olarak silinir. Emin misiniz?"
+
+  submission_has_been_removed: Gönderim silindi.
+  submission_has_been_archived: Gönderim arşivlendi.
+  submission_has_been_unarchived: Gönderim arşivden çıkarıldı.
+  template_has_been_removed: Şablon silindi.
+  template_has_been_archived: Şablon arşivlendi.
+  template_has_been_cloned: Şablon çoğaltıldı.
+  template_has_been_unarchived: Şablon arşivden çıkarıldı.
+  document_template_has_been_moved: Belge şablonu taşındı.
+  unable_to_move_template_into_folder: Şablon klasöre taşınamadı.
+
+  # Submitter create / api / embed
+  api_and_embedding: API ve Gömme
+  template_id: Şablon ID
+  embedding_url: Gömme URL'si
+  share_template_with_test_mode: Şablonu Test moduyla paylaş
+  share_template_with_all_tenants: Şablonu tüm Tenant'larla paylaş
+  use_following_placeholders_text_: 'Şu placeholder metinleri kullanın:'
+
+  # ============================================================
+  # Login / Auth / Setup
+  # ============================================================
+  password: Parola
+  sign_in: Giriş Yap
+  signing_in: Giriş Yapılıyor
+  sign_out: Çıkış Yap
+  sign_up: Kayıt Ol
+  signing_up: Kayıt yapılıyor
+  sign_in_with_microsoft: Microsoft ile Giriş Yap
+  sign_in_with_google: Google ile Giriş Yap
+  sign_up_with_google: Google ile Kayıt Ol
+  sign_up_with_microsoft: Microsoft ile Kayıt Ol
+  sign_in_with_name_account: "%{name} hesabı ile giriş yap"
+  forgot_your_password_: Parolanızı mı unuttunuz?
+  create_free_account: Ücretsiz hesap oluştur
+  already_have_an_account: Zaten hesabınız var mı?
+  first_name: Ad
+  last_name: Soyad
+  profile_details: Profil Bilgileri
+  by_creating_an_account_you_agree_to_our_html: 'Hesap oluşturarak <a target="_blank" href="https://www.docuseal.com/privacy">Gizlilik Politikamızı</a> ve <a target="_blank" href="https://www.docuseal.com/terms">Hizmet Şartlarımızı</a> kabul etmiş olursunuz.'
+  enter_email_to_continue: Devam etmek için e-posta girin
+  setup_2fa_to_continue: Devam etmek için 2FA kurun.
+  create_a_new_account: Yeni bir hesap oluşturun.
+  you_are_already_signed_in: Zaten giriş yaptınız.
+  please_sign_in: Lütfen giriş yapın.
+  welcome_to_product_name: "%{product_name} platformuna hoş geldiniz"
+  welcome_to_docuseal: DocuSeal'e Hoş Geldiniz
+  set_password: Parola belirle
+  confirm_password: Yeni parolayı onayla
+  confirm_new_password: Yeni parolayı onayla
+  save_password_and_sign_in: Parolayı kaydet ve Giriş Yap
+  change_your_password: Parolanızı değiştirin
+  new_password: Yeni parola
+  current_password: Mevcut parola
+  minimum_password_length_characters_minimum: 'En az %{minimum_password_length} karakter'
+  change_my_password: Parolamı değiştir
+  changing_password: Parola değiştiriliyor
+  reset_password: Parolayı sıfırla
+  resetting_password: Parola sıfırlanıyor
+  password_has_been_changed: Parola değiştirildi.
+  wrong_password: Hatalı parola.
+  dont_remember_your_current_password_click_here_to_reset_it_html: 'Mevcut parolanızı hatırlamıyor musunuz? <label class="link" for="resend_password_button">Buraya tıklayın</label> ve sıfırlayın.'
+  an_email_with_password_reset_instructions_has_been_sent: Parola sıfırlama talimatlarını içeren bir e-posta gönderildi.
+  click_here_to_send_a_reset_password_email_html: '<label class="link" for="resend_password_button">Buraya tıklayın</label> ve parola sıfırlama e-postası gönderin.'
+
+  two_factor_authentication: İki Faktörlü Kimlik Doğrulama
+  two_factor_code_from_authenticator_app: Authenticator Uygulamasından İki Faktörlü Kod
+  2fa_is_not_configured: 2FA yapılandırılmamış
+  set_up_2fa: 2FA Kur
+  setup_2fa: 2FA Kur
+  remove_2fa: 2FA'yı Kaldır
+  2fa_has_been_configured: 2FA yapılandırıldı.
+  2fa_has_been_removed: 2FA kaldırıldı.
+  2fa_has_been_set_up_already: 2FA zaten kurulmuş.
+  code_is_invalid: Kod geçersiz
+  use_an_authenticator_mobile_app_like_google_authenticator_or_1password_to_scan_the_qr_code_below: Aşağıdaki QR kodunu okutmak için Google Authenticator veya 1Password gibi bir authenticator uygulaması kullanın.
+
+  send_verification_code: Doğrulama kodu gönder
+  code_has_been_resent: Kod tekrar gönderildi
+  invalid_code: Geçersiz kod
+  verification_code: Doğrulama Kodu
+  resend_code: Kodu Tekrar Gönder
+  re_send_code: Kodu Tekrar Gönder
+  verify_new_sign_in: Yeni girişi doğrula
+  use_otp_code_to_sign_in_or_click_the_link_below_html: 'Giriş yapmak için <b>%{code}</b> kodunu kullanın veya aşağıdaki bağlantıya tıklayın:'
+  complete_sign_in: Girişi Tamamla
+  please_reply_to_this_email_if_you_dont_recognize_this_sign_in_attempt: Bu giriş denemesini siz yapmadıysanız lütfen bu e-postayı yanıtlayın.
+  the_code_has_been_sent_to_your_email: Kod e-posta adresinize gönderildi.
+  enter_the_verification_code_from_your_email: E-postanızdaki doğrulama kodunu girin.
+  too_many_attempts: Çok fazla deneme.
+  invalid_or_expired_verification_code: Geçersiz veya süresi dolmuş doğrulama kodu.
+  didnt_receive_an_email: E-posta almadınız mı?
+  unconfirmed: Onaylanmadı
+  unable_to_identify_reset_your_password_to_sign_in: Doğrulanamadı. Giriş yapmak için parolanızı sıfırlayın.
+
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_html: Gönderen, <b>%{phone}</b> telefon numaranıza gönderilen tek kullanımlık parolayla iki faktörlü kimlik doğrulama istedi.
+  the_sender_has_requested_a_two_factor_authentication_via_one_time_password_sent_to_your_email_html: Gönderen, <b>%{email}</b> e-posta adresinize gönderilen tek kullanımlık parolayla iki faktörlü kimlik doğrulama istedi.
+  please_contact_the_requester_to_specify_your_phone_number_for_two_factor_authentication: İki faktörlü kimlik doğrulama için telefon numaranızı belirtmek üzere isteği gönderenle iletişime geçin.
+  please_contact_the_requester_to_specify_your_email_for_two_factor_authentication: İki faktörlü kimlik doğrulama için e-postanızı belirtmek üzere isteği gönderenle iletişime geçin.
+  we_sent_a_one_time_verification_code_to_your_email_address_please_enter_the_code_below_to_continue: E-posta adresinize tek kullanımlık doğrulama kodu gönderdik. Devam etmek için lütfen kodu aşağıya girin.
+  your_verification_code_to_access_the_name: '"%{name}" belgesine erişmek için doğrulama kodunuz:'
+  please_reply_to_this_email_if_you_didnt_request_this: Bu işlemi siz başlatmadıysanız lütfen bu e-postayı yanıtlayın.
+
+  verification_required_refresh_the_page_and_pass_2fa: Doğrulama gerekli, sayfayı yenileyip 2FA'dan geçin.
+  rate_limit_exceeded: Hız sınırı aşıldı
+  too_many_sms_attempts_try_again_in_a_few_seconds: Çok fazla SMS denemesi. Birkaç saniye sonra tekrar deneyin.
+  too_many_requests_try_again_later: Çok fazla istek. Daha sonra tekrar deneyin.
+  number_phone_number_is_invalid: "+%{number} telefon numarası geçersiz"
+  invalid_phone_number: Geçersiz telefon numarası
+  sms_rate_limit_exceeded: SMS hız sınırı aşıldı
+
+  a_confirmation_email_has_been_sent_to_the_new_email_address: Yeni e-posta adresine onay e-postası gönderildi.
+  email_address_is_awaiting_confirmation_follow_the_link_in_the_email_to_confirm: "%{email} adresi onay bekliyor. Onaylamak için e-postadaki bağlantıya tıklayın."
+  please_confirm_your_email_address_using_the_link_below_: 'Lütfen aşağıdaki bağlantı ile e-posta adresinizi onaylayın:'
+  confirm_email: E-postayı Onayla
+  please_verify_your_email_address_to_continue: Devam etmek için lütfen e-posta adresinizi doğrulayın.
+  verification_code_sent_click_link_or_enter_code: E-postanıza doğrulama kodu gönderildi. E-postadaki bağlantıya tıklayın veya tek kullanımlık kodu girerek e-postanızı doğrulayın.
+  use_otp_code_to_verify_email_or_click_link_below_html: 'E-postanızı doğrulamak için <b>%{code}</b> kodunu kullanın veya aşağıdaki bağlantıya tıklayın:'
+  verify_your_email: E-postanızı doğrulayın
+  your_email_has_been_confirmed: E-postanız onaylandı.
+
+  your_email_address_has_been_changed: E-posta adresiniz değiştirildi
+  the_email_address_for_your_account_has_been_changed_to_new_email: Hesabınızın e-posta adresi %{new_email} olarak değiştirildi.
+  if_you_did_not_make_this_change_please_contact_us_by_replying_to_this_email: Bu değişikliği siz yapmadıysanız lütfen bu e-postayı yanıtlayarak bize ulaşın.
+
+  you_requested_to_reset_your_password_use_the_link_below_to_continue: Parolanızı sıfırlamak istediniz. Devam etmek için aşağıdaki bağlantıyı kullanın.
+  if_you_didnt_request_this_you_can_ignore_this_email: Bu işlemi siz başlatmadıysanız bu e-postayı yok sayabilirsiniz.
+  your_password_wont_change_until_you_open_the_link_above_and_set_a_new_one: Yukarıdaki bağlantıyı açıp yeni bir parola belirlemediğiniz sürece parolanız değişmeyecek.
+
+  your_user_account_has_been_archived_contact_your_administrator_to_restore_access_to_your_account: Kullanıcı hesabınız arşivlendi. Hesabınıza erişimi geri kazanmak için yöneticinize başvurun.
+  your_email_could_not_be_reached_this_may_happen_if_there_was_a_typo_in_your_address_or_if_your_mailbox_is_not_available_please_contact_support_email_to_log_in: E-postanıza ulaşılamadı. Adresinizde yazım hatası olabilir veya e-posta kutunuz erişilebilir olmayabilir. Giriş yapmak için lütfen support@docuseal.com adresine ulaşın.
+
+  reveal_api_key: API Anahtarını Göster
+  enter_your_password_to_reveal_the_api_key: API anahtarını görmek için parolanızı girin
+  api_key_access_code: API anahtarı erişim kodu
+  use_otp_code_to_access_the_api_key_html: API anahtarına erişmek için <b>%{code}</b> kodunu kullanın.
+  please_reply_to_this_email_if_you_dont_recognize_this_request: Bu isteği siz yapmadıysanız lütfen bu e-postayı yanıtlayın.
+
+  # ============================================================
+  # Hesap / Ayarlar / Profil
+  # ============================================================
+  account: Hesap
+  preferences: Tercihler
+  company_name: Şirket adı
+  time_zone: Saat dilimi
+  language: Dil
+  app_url: Uygulama URL'si
+  update: Güncelle
+  updating: Güncelleniyor
+  profile: Profil
+  settings: Ayarlar
+  console: Konsol
+  account_information_has_been_updated: Hesap bilgileri güncellendi.
+  contact_information_has_been_update: İletişim bilgileri güncellendi.
+  changes_have_been_saved: Değişiklikler kaydedildi.
+  unable_to_save: Kaydedilemedi.
+  account_has_been_created: Hesap oluşturuldu.
+  account_has_been_updated: Hesap güncellendi.
+  account_has_been_removed: Hesap kaldırıldı.
+  edit_account: Hesabı Düzenle
+  accounts: Hesaplar
+  team_account: Ekip hesabı
+  team_accounts: Ekip Hesapları
+  tenant_account: Tenant hesabı
+  tenant_accounts: Tenant Hesapları
+
+  danger_zone: Tehlikeli Bölge
+  delete_my_account: Hesabımı sil
+  you_are_scheduling_your_account_for_deletion_after_deletion_your_data_will_be_permanently_removed_and_cannot_be_recovered_click_ok_if_you_would_like_to_continue: "Hesabınızı silmek üzeresiniz. Silindikten sonra verileriniz kalıcı olarak kaldırılır ve geri alınamaz.\n\nDevam etmek için Tamam'a tıklayın."
+  your_account_will_be_permanently_deleted_within_2_months_please_contact_us_if_you_want_to_keep_your_account: Hesabınız 2 ay içinde kalıcı olarak silinecek. Hesabınızı korumak istiyorsanız bizimle iletişime geçin.
+  your_email_address_has_been_released_immediately_you_can_now_be_added_to_your_company_team_without_waiting_for_the_deletion_period_to_end: E-posta adresiniz hemen serbest bırakıldı. Bir ekibe katılıyorsanız, silme süresinin sona ermesini beklemeden şirket ekibinize davet edilebilirsiniz.
+
+  should_be_a_valid_url: geçerli bir URL olmalıdır
+
+  # ============================================================
+  # E-posta entegrasyonu
+  # ============================================================
+  email_integration: E-posta Entegrasyonu
+  send_via_connected_email: Bağlı e-posta üzerinden gönder
+  activate_with_docuseal_pro: DocuSeal Pro ile aktifleştir
+  send_signature_request_to_your_recipients_directly_from_your_email: İmza isteklerini doğrudan kendi e-postanızdan alıcılarınıza gönderin
+  connect_gmail: Gmail Bağla
+  re_connect_gmail: Gmail'i Yeniden Bağla
+  connect_microsoft: Microsoft Bağla
+  re_connect_microsoft: Microsoft'u Yeniden Bağla
+  gmail_has_been_connected: Gmail bağlandı.
+  microsoft_account_has_been_connected: Microsoft Hesabı bağlandı.
+  but_not_activated: ancak aktif değil
+  has_been_connected: bağlandı
+  connected_successfully: Başarıyla bağlandı.
+
+  # ============================================================
+  # Ayarlar (advanced)
+  # ============================================================
+  initial_setup: İlk Kurulum
+  demo_environment: Demo Ortamı
+  upgrade: Yükselt
+  send_from_email: Gönderici E-posta
+  storage: Depolama
+  notifications: Bildirimler
+  e_signature: E-İmza
+  personalization: Kişiselleştirme
+  users: Kullanıcılar
+  plans: Planlar
+  new: Yeni
+  embedding: Gömme
+  background_jobs: Arka Plan İşleri
+  need_help_ask_a_question_: 'Yardıma mı ihtiyacınız var? Bir soru sorun:'
+  ask_ai: Yapay Zekaya Sor
+  ai_assistant: Yapay Zeka Asistanı
+  discord_community: Discord Topluluğu
+  integrations: Entegrasyonlar
+  teams: Ekipler
+  tenants: Tenantlar
+
+  # ============================================================
+  # Twilio / SMS
+  # ============================================================
+  send_signature_requests_via_sms: İmza isteklerini SMS ile gönder
+  twilio_settings: Twilio Ayarları
+  webhook_settings: Webhook Ayarları
+  sending_sms: SMS Gönderiliyor
+  from: Gönderen
+  account_sid: Account SID
+  send_sms_via_webhook: SMS'i webhook üzerinden gönder
+  webhook_integration_allows_to_send_sms_using_any_provider: Webhook entegrasyonu herhangi bir sağlayıcıyla SMS göndermenizi sağlar
+  sms_not_configured: SMS Yapılandırılmamış
+  configure_sms_settings_in_order_to_send_text_messages_: 'Mesaj gönderebilmek için SMS ayarlarını yapılandırın:'
+  go_to_sms_settings: SMS Ayarlarına Git
+  sms_length_cant_be_longer_than_120_bytes: SMS uzunluğu 120 byte'tan fazla olamaz
+
+  # ============================================================
+  # SSO / Storage
+  # ============================================================
+  single_sign_on_with_saml_2_0: SAML 2.0 ile Tek Oturum Açma
+  force_sso_disable_login_with_email_and_password: SSO'yu zorla (e-posta ve parolayla girişi devre dışı bırak)
+  for_aws_s3_compatible_apis_like_minio: Minio gibi AWS S3 uyumlu API'ler için.
+  store_all_files_on_disk: Tüm dosyaları diskte sakla
+  no_configs_are_needed_but_make_sure_your_disk_is_persistent: Yapılandırma gerekmiyor, ancak diskinizin kalıcı olduğundan emin olun
+  not_suitable_for_heroku_and_other_paas: Heroku ve diğer PaaS'lar için uygun değil
+  bulk_send_from_excel_xlsx_or_csv: Excel XLSX veya CSV ile toplu gönderim
+  user_nameid_not_found: "Kullanıcı %{nameid} bulunamadı."
+  sso_settings_have_been_updated: SSO ayarları güncellendi.
+
+  # ============================================================
+  # Submission flow / pencereler
+  # ============================================================
+  submitter_cannot_be_updated: Alıcı güncellenemez.
+  at_least_one_field_must_be_filled: En az bir alan doldurulmalıdır.
+  archived_users: Arşivlenmiş Kullanıcılar
+  embedding_users: Gömme Kullanıcıları
+  view_embedding_users: Gömme Kullanıcılarını Görüntüle
+  invalid_pdf: Geçersiz PDF
+  file_is_missing: Dosya eksik
+  invalid_file_type: Geçersiz dosya türü
+  upload_file: Dosya yükle
+  unable_to_update_file: Dosya yüklenemedi.
+
+  # ============================================================
+  # Webhook
+  # ============================================================
+  webhook_secret_has_been_saved: Webhook Secret kaydedildi.
+  webhook_url_has_been_saved: Webhook URL'si kaydedildi.
+  webhook_request_has_been_sent: Webhook isteği gönderildi.
+  webhook_url_has_been_updated: Webhook URL'si güncellendi.
+  webhook_url_has_been_deleted: Webhook URL'si silindi.
+  unable_to_resend_webhook_request: Webhook isteği yeniden gönderilemedi.
+  new_webhook: Yeni Webhook
+  delete_webhook: Webhook'u sil
+  webhook_secret: Webhook Secret
+  events_log: Olay Kayıtları
+  event_log: Olay Kaydı
+  there_are_no_events: Olay bulunmuyor
+  next_attempt_in_time_in_words: Sonraki deneme %{time_in_words} içinde
+
+  # ============================================================
+  # Kullanıcı yönetimi
+  # ============================================================
+  user_has_been_invited: Kullanıcı davet edildi.
+  unable_to_update_user: Kullanıcı güncellenemedi.
+  user_has_been_updated: Kullanıcı güncellendi.
+  unable_to_remove_user: Kullanıcı kaldırılamadı.
+  user_has_been_removed: Kullanıcı kaldırıldı.
+  upgrade_your_plan_to_invite_more_users_contact_email: 'Daha fazla kullanıcı davet etmek için planınızı yükseltin (%{email} ile iletişime geçin).'
+  contact_your_admin_email_to_invite_more_users: "Daha fazla kullanıcı davet etmek için yöneticiniz %{email} ile iletişime geçin."
+  contact_your_administrator_to_add_new_users: Yeni kullanıcı eklemek için yöneticinize başvurun
+  edit_user: Kullanıcıyı Düzenle
+  new_user: Yeni Kullanıcı
+  last_session: Son oturum
+  unlock_more_user_roles_with_docuseal_pro: DocuSeal Pro ile daha fazla kullanıcı rolünün kilidini açın.
+  view_active: Aktifleri Görüntüle
+  impersonate: Bürüne
+  impersonated_as: Bürünüldü
+  admin: Yönetici
+  tenant_admin: Tenant Yöneticisi
+  editor: Editör
+  viewer: İzleyici
+  member: Üye
+  agent: Temsilci
+  superadmin: Süper Yönetici
+  owner: Sahip
+  make_owner: Sahip Yap
+  select_user: Kullanıcı seç
+  team_member_permissions: Ekip üyesi izinleri
+  entire_team: Tüm ekip
+  admin_only: Yalnızca yönetici
+  accessiable_by: Erişebilen
+  team_access: Ekip erişimi
+  click_here_to_learn_more_about_user_roles_and_permissions_html: '<a href="https://www.docuseal.com/resources/manage-users-and-roles" class="link" rel="noopener noreferrer nofollow" target="_blank">Buraya tıklayın</a> ve kullanıcı rolleri ve izinleri hakkında daha fazla bilgi edinin.'
+
+  # ============================================================
+  # Tenant / Team yönetimi
+  # ============================================================
+  new_team: Yeni Ekip
+  new_tenant: Yeni Tenant
+  remove_team: Ekibi Kaldır
+  remove_tenant: Tenant'ı Kaldır
+  allow_tenant_admins_to_invite_new_users: Tenant yöneticilerinin yeni kullanıcı davet etmesine izin ver
+  manage_multiple_teams: Birden Fazla Ekibi Yönet
+  use_the_edit_form_to_move_it_to_another_team: Başka bir ekibe taşımak için düzenleme formunu kullanın.
+
+  # ============================================================
+  # Şablon Form alan tipleri
+  # ============================================================
+  text_field: Metin Alanı
+  signature_field: İmza Alanı
+  initials_field: Paraf Alanı
+  date_field: Tarih Alanı
+  number_field: Sayı Alanı
+  image_field: Resim Alanı
+  file_field: Dosya Alanı
+  select_field: Seçim Alanı
+  checkbox_field: Onay Kutusu Alanı
+  multiple_field: Çoklu Seçim Alanı
+  radio_field: Radyo Grubu Alanı
+  cells_field: Hücre Alanı
+  stamp_field: Mühür Alanı
+  payment_field: Ödeme Alanı
+  phone_field: Telefon Alanı
+  verification_field: Kimlik Doğrulama
+  knowledge_based_authentication: Bilgi Tabanlı Kimlik Doğrulama
+  kba_field: KBA
+  identity_verification: Kimlik doğrulama
+  paid_price: "%{price} ödendi"
+  verified: Doğrulandı
+  unverified: Doğrulanmadı
+  document: Belge
+  completed_at: Tamamlandı
+  edit_recipient: Alıcıyı Düzenle
+  update_recipient: Alıcıyı Güncelle
+  use_international_format_1xxx_: 'Uluslararası formatta kullanın: +90xxx...'
+
+  # ============================================================
+  # Dashboard Kartları / paneller
+  # ============================================================
+  document_id: Belge ID
+  envelope_id: Zarf ID
+  testing_log_not_for_production_use: Test Kaydı - Üretim için kullanılmamalıdır
+  original_sha256: Orijinal SHA256
+  result_sha256: Sonuç SHA256
+  generated_at: Oluşturulma tarihi
+  session_id: Oturum ID
+  option: Seçenek
+
+  # ============================================================
+  # Tarih filtreleri
+  # ============================================================
+  to: Bitiş
+  created_at: Oluşturuldu
+  today: Bugün
+  yesterday: Dün
+  this_week: Bu hafta
+  last_week: Geçen hafta
+  this_month: Bu ay
+  last_month: Geçen ay
+  this_year: Bu yıl
+  last_3_months: Son 3 ay
+  last_6_months: Son 6 ay
+  last_year: Geçen yıl
+  all_time: Tüm zamanlar
+  everyone: Herkes
+  daily: Günlük
+  weekly: Haftalık
+  monthly: Aylık
+
+  # ============================================================
+  # Süre / saat seçenekleri
+  # ============================================================
+  one_hour: 1 saat
+  two_hours: 2 saat
+  four_hours: 4 saat
+  eight_hours: 8 saat
+  twelve_hours: 12 saat
+  twenty_four_hours: 24 saat
+  one_day: 1 gün
+  two_days: 2 gün
+  three_days: 3 gün
+  four_days: 4 gün
+  five_days: 5 gün
+  six_days: 6 gün
+  seven_days: 7 gün
+  eight_days: 8 gün
+  nine_days: 9 gün
+  ten_days: 10 gün
+  fifteen_days: 15 gün
+  twenty_one_days: 21 gün
+  thirty_days: 30 gün
+  two_weeks: 2 hafta
+  three_weeks: 3 hafta
+  four_weeks: 4 hafta
+  one_month: 1 ay
+  two_months: 2 ay
+  three_months: 3 ay
+  default_expiration: Varsayılan süre dolumu
+  specified_date: Belirli tarih
+  specified_email: Belirli e-posta
+
+  # ============================================================
+  # Plan / Pro / Billing
+  # ============================================================
+  billing: Faturalandırma
+  free: Ücretsiz
+  unlimited_documents_storage: Sınırsız belge depolama
+  users_management: Kullanıcı yönetimi
+  ten_filed_types: 10 alan türü
+  multiple_signers: Birden fazla imzalayan
+  automatic_esignature: Otomatik e-imza
+  ten_signature_request_emails_per_month: Aylık 10 imza isteği e-postası
+  unlimited_sign_yourself: Sınırsız kendin imzala
+  free_developer_testing_sandbox: Ücretsiz geliştirici test ortamı
+  continue_with_free_basic: Ücretsiz Basic ile devam et
+  unlimited_signature_request_emails: Sınırsız imza isteği e-postası
+  your_company_logo: Şirket logonuz
+  connect_own_email_address: Kendi e-posta adresinizi bağlayın
+  personalize_email_content: E-posta içeriğini kişiselleştirin
+  automated_reminders: Otomatik hatırlatmalar
+  bulk_send_from_spreadsheet: Excel'den toplu gönderim
+  identify_verification_via_sms: SMS ile kimlik doğrulama
+  start_with_pro: Pro ile Başla
+  user_month: kullanıcı / ay
+  developer_sandbox: Geliştirici Sandbox.
+  upgrade_to_start_using_in_production_html: 'Üretimde kullanmaya başlamak için <a href="%{url}" target="_blank" class="link font-semibold">yükseltin</a>.'
+  unlock_with_docuseal_pro: DocuSeal Pro ile kilidini aç
+  upgrade_to_send_unlimited_signature_requests: Sınırsız imza isteği göndermek için yükseltin
+  upgade_now: Hemen Yükselt
+  send_signature_request_emails_without_limits_with_docuseal_pro: DocuSeal Pro ile imza isteği e-postalarını sınırsız gönderin
+  count_emails_used: '%{count} e-posta kullanıldı'
+  pro_user_seats_used: Kullanılan Pro kullanıcı koltukları
+  manage_plan: Plan Yönet
+  manage_subscription: Aboneliği Yönet
+  your_pro_plan_payment_is_overdue: Pro plan ödemeniz vadesi geçti.
+  click_here_to_update_your_payment_details_and_clear_the_invoice_to_ensure_uninterrupted_service_html: 'Hizmetinizin kesintisiz devam etmesi için <a href="%{url}" class="link">buraya tıklayın</a> ve ödeme bilgilerinizi güncelleyerek faturayı kapatın.'
+  overdue_payment: Vadesi Geçmiş Ödeme
+  your_pro_plan_has_been_suspended_due_to_unpaid_invoices_you_can_update_your_payment_details_to_settle_the_invoice_and_continue_using_docuseal_or_cancel_your_subscription: Ödenmemiş faturalar nedeniyle Pro Planınız askıya alındı. Faturayı kapatıp DocuSeal'i kullanmaya devam etmek için ödeme bilgilerinizi güncelleyebilir veya aboneliğinizi iptal edebilirsiniz.
+  count_10_signature_request_emails_sent_this_month_upgrade_to_pro_to_send_unlimited_signature_request_email: 'Bu ay %{count} / 10 imza isteği e-postası gönderildi. Sınırsız imza isteği e-postası göndermek için Pro''ya yükseltin.'
+  test_mode_emails_limit_will_be_reset_within_24_hours: Test modu e-posta limiti 24 saat içinde sıfırlanacak.
+  on_a_scale_of_1_to_10_how_satisfied_are_you_with_the_docuseal_product_: 1'den 10'a kadar bir ölçekte, DocuSeal ürününden ne kadar memnunsunuz?
+  tell_us_more_about_your_experience: Deneyiminiz hakkında bize daha fazla bilgi verin
+  extremely_dissatisfied: Hiç memnun değilim
+  extremely_satisfied: Çok memnunum
+
+  # ============================================================
+  # Audit log / event
+  # ============================================================
+  audit_log: Denetim Kaydı
+  download_combined_pdf: Birleştirilmiş PDF İndir
+  combine_completed_documents_and_audit_log: Tamamlanmış belgeleri ve Denetim Kaydını birleştir
+  attach_audit_log_pdf: Denetim Kaydı PDF'sini ekle
+  attach_documents: Belgeleri ekle
+  attach_audit_log_pdf_to_the_email: E-postaya Denetim Kaydı PDF'sini ekle
+  attach_documents_to_the_email: E-postaya belgeleri ekle
+
+  submission_created_by_email_html: '<b>Gönderim oluşturuldu</b> %{email} tarafından'
+  submission_created_by_email_via_source_html: '<b>Gönderim oluşturuldu</b> %{email} tarafından %{source} üzerinden'
+  submission_created_via_source_html: '<b>Gönderim oluşturuldu</b> %{source} üzerinden'
+
+  # ============================================================
+  # Şifreleme / sertifika
+  # ============================================================
+  use_your_own_certificates_to_sign_and_verify_pdf_files: PDF dosyalarını imzalamak ve doğrulamak için kendi sertifikalarınızı kullanın.
+  upload_certificate: Sertifika Yükle
+  file: Dosya
+  use_a_valid_der_p12_or_pfx_file: Geçerli bir .der, .p12 veya .pfx dosyası kullanın.
+  pdf_signature: PDF İmzası
+  upload_signed_pdf_file_to_validate_its_signature_: 'İmzalı PDF dosyasını yükleyerek imzasını doğrulayın:'
+  analyzing: Analiz ediliyor
+  verify_signed_pdf: İmzalı PDF'i Doğrula
+  click_to_upload_or_drag_and_drop_html: 'Yüklemek için tıklayın veya sürükleyip bırakın'
+  click_to_upload_or_drag_and_drop_files_html: '<span class="font-medium">Yüklemek için tıklayın</span> veya dosyaları sürükleyip bırakın'
+  signing_certificates: İmzalama Sertifikaları
+  upload_cert: Sertifika Yükle
+  valid_to: Geçerlilik
+  make_default: Varsayılan Yap
+  certificate_has_been_successfully_added: Sertifika başarıyla eklendi.
+  default_certificate_has_been_selected: Varsayılan sertifika seçildi.
+  certificate_has_been_removed: Sertifika kaldırıldı.
+  already_exists: zaten var.
+  timestamp_server: Zaman Damgası Sunucusu
+  timeserver_url: Zaman Sunucusu URL'si
+  url_of_the_trusted_rfc_3161_timeserver_to_be_used_to_generate_timestamp_signatures: Zaman damgalı imzaları oluşturmak için kullanılacak güvenilir RFC 3161 zaman sunucusunun URL'si.
+  apply_multiple_pdf_digital_signatures_in_the_document_per_each_signer: Belgede her imzalayan için ayrı PDF dijital imzaları uygula
+  remove_pdf_form_fillable_fields_from_the_signed_pdf_flatten_form: İmzalı PDF'ten doldurulabilir form alanlarını kaldır (formu düzleştir)
+  invalid_timeserver: Geçersiz Zaman Sunucusu
+  signed_with_trusted_certificate: Güvenilir sertifika ile imzalandı
+  signed_with_external_certificate: Harici sertifika ile imzalandı
+  docuseal_trusted_signature: DocuSeal Güvenilir İmza
+  sign_documents_with_trusted_certificate_provided_by_docu_seal_your_documents_and_data_are_never_shared_with_docu_seal_p_d_f_checksum_is_provided_to_generate_a_trusted_signature: Belgelerinizi DocuSeal tarafından sağlanan güvenilir sertifika ile imzalayın. Belgeleriniz ve verileriniz DocuSeal ile asla paylaşılmaz. Güvenilir bir imza oluşturmak için PDF checksum'ı sağlanır.
+
+  # ============================================================
+  # Email / template / customization settings
+  # ============================================================
+  email_templates: E-posta Şablonları
+  signature_request_email: İmza isteği e-postası
+  signature_request_reminder_email: İmza isteği hatırlatma e-postası
+  signature_request_sms: İmza İsteği SMS
+  verification_code_sms: Doğrulama Kodu SMS
+  completed_notification_email: Tamamlama bildirim e-postası
+  company_logo: Şirket Logosu
+  submission_form: Gönderim Formu
+  completed_form_message: Tamamlanan Form Mesajı
+  completed_form_redirect_button: Tamamlanan Form Yönlendirme Butonu
+  documents_copy_email: Belge kopya e-postası
+  form_custom_css: Form Özel CSS
+  subject: Konu
+  body: İçerik
+  text_message: Metin mesajı
+  title: Başlık
+  button_title: Buton başlığı
+  button_url: Buton URL'si
+  upload_logo: Logo Yükle
+  show_confetti_on_successful_completion: Başarılı tamamlamada konfeti göster
+  settings_have_been_saved: Ayarlar kaydedildi.
+  display_your_company_name_and_logo_when_signing_documents: Belgeleri imzalarken şirket adı ve logonuzu göster.
+
+  # ============================================================
+  # Notifications settings
+  # ============================================================
+  developer_newsletters: Geliştirici Bültenleri
+  skip: Atla
+  email_notifications: E-posta Bildirimleri
+  receive_notification_emails_on_completed_submission: Tamamlanan gönderimde bildirim e-postası al
+  completed_documents_notification_bcc_address: Tamamlanan belgeler için bildirim BCC adresi
+  sign_request_email_reminders: İmza İsteği E-posta Hatırlatmaları
+  send_automatic_email_reminders_to_your_recipients: Alıcılarınıza otomatik e-posta hatırlatmaları gönderin.
+  first_reminder_in: İlk hatırlatma
+  second_reminder_in: İkinci hatırlatma
+  third_reminder_in: Üçüncü hatırlatma
+  learn_more: Daha Fazla Bilgi
+  send_email_copy_with_completed_documents_to_a_specified_bcc_address: Tamamlanmış belgelerin e-posta kopyasını belirli bir BCC adresine gönder.
+
+  # ============================================================
+  # E-imza / 21 CFR Part 11 ayarları
+  # ============================================================
+  force_2fa_with_authenticator_app: Authenticator Uygulaması ile 2FA'yı zorunlu kıl
+  add_signature_id_to_the_documents: Belgelere imza kimliği ekle
+  require_signing_reason: İmzalama gerekçesi iste
+  allow_typed_text_signatures: Yazılı metin imzalarına izin ver
+  allow_to_resubmit_completed_forms: Tamamlanmış formların yeniden gönderilmesine izin ver
+  allow_to_decline_documents: Belgelerin reddedilmesine izin ver
+  allow_to_delegate_documents: Belgelerin devredilmesine izin ver
+  remember_and_pre_fill_signatures: İmzaları hatırla ve önceden doldur
+  require_authentication_for_file_download_links: Dosya indirme bağlantıları için kimlik doğrulama iste
+  require_two_factor_authentication_2fa_with_an_authenticator_app_e_g_google_authenticator_authy_all_users_signing_documents_must_pass_the_second_factor_verification_using_a_secure_code_in_addition_to_their_password: Authenticator uygulaması (örn. Google Authenticator, Authy) ile iki faktörlü kimlik doğrulamayı (2FA) zorunlu kıl. Belgeleri imzalayan tüm kullanıcılar parolalarına ek olarak güvenli bir kodla ikinci faktör doğrulamasından geçmek zorundadır.
+  add_a_unique_signature_id_and_timestamp_to_each_signature_for_audit_and_traceability_purposes_along_with_the_timestamp_part_of_docuseals_21_cfr_part_11_compliance_settings: "Denetim ve izlenebilirlik için her imzaya benzersiz İmza ID'si ve zaman damgası ekle. DocuSeal'in 21 CFR Part 11 uyumluluk ayarlarının bir parçasıdır."
+  require_signer_to_provide_a_reason_for_signing_before_completing_their_signature_e_g_approvals_certifications_part_of_docuseals_21_cfr_part_11_compliance_settings: "İmzalayanların imzalarını tamamlamadan önce bir gerekçe (örn. onaylar, sertifikalar) belirtmesini iste. DocuSeal'in 21 CFR Part 11 uyumluluk ayarlarının bir parçasıdır."
+  allow_signers_to_create_signatures_by_typing_their_name_instead_of_drawing_or_uploading_one: İmzalayanların imzalarını çizmek veya yüklemek yerine adlarını yazarak oluşturmasına izin ver.
+  allow_signers_to_resubmit_forms_after_completion_useful_when_corrections_or_multiple_submissions_are_needed: İmzalayanların formları tamamladıktan sonra yeniden göndermesine izin ver. Düzeltme veya birden fazla gönderim gerektiğinde kullanışlıdır.
+  allow_recipients_to_decline_signing_a_document_the_decline_reason_notification_will_be_sent_to_the_signature_requester: Alıcıların belgeyi reddetmesine izin ver. Reddetme gerekçesi bildirimi imza talep edene gönderilir.
+  allow_recipients_to_delegate_documents: Alıcıların belgeleri başka bir kişiye e-posta yoluyla devretmesine izin ver. Asıl alıcının yetkili imzalayana belgeyi iletmesi gerektiğinde kullanışlıdır.
+  save_a_users_signature_and_automatically_pre_fill_it_in_future_signing_sessions: "Kullanıcının imzasını kaydet ve gelecekteki imzalama oturumlarında otomatik olarak önceden doldur."
+  make_document_download_links_expire_after_40_minutes_to_prevent_long_term_access_and_enhance_security: Uzun süreli erişimi önlemek ve güvenliği artırmak için belge indirme bağlantılarının 40 dakika sonra geçerliliğini kaybetmesini sağla.
+  require_authentication_with_user_login_or_api_key_to_access_the_document_download_links: Belge indirme bağlantılarına erişmek için kullanıcı girişi veya API anahtarı ile kimlik doğrulama iste.
+  combine_signed_documents_and_the_audit_log_into_a_single_pdf_file_for_easier_recordkeeping_and_compliance: Daha kolay kayıt tutma ve uyumluluk için imzalı belgeleri ve Denetim Kaydını tek bir PDF dosyasında birleştir.
+  require_a_jwt_authorization_to_preview_embedded_forms_ensuring_only_authorized_users_can_view_them: Yalnızca yetkili kullanıcıların görüntüleyebilmesini sağlamak için gömülü formların önizlemesi için JWT yetkilendirmesi iste.
+  make_all_newly_created_templates_private_to_their_creator_by_default: Yeni oluşturulan tüm şablonları varsayılan olarak yalnızca oluşturan kişiye özel yap.
+  make_all_newly_created_templates_private_to_their_creator_and_admins_by_default: Yeni oluşturulan tüm şablonları varsayılan olarak yalnızca oluşturan ve yöneticilere özel yap.
+  create_templates_with_admin_access_by_default: Şablonları varsayılan olarak yönetici erişimiyle oluştur
+  create_templates_with_private_access_by_default: Şablonları varsayılan olarak özel erişimle oluştur
+  make_the_recipients_signing_order_always_enforced_so_that_the_second_signer_can_start_signing_their_part_only_after_the_first_signer_has_completed_signing: İkinci imzalayanın imzalamaya yalnızca ilk imzalayan imzaladıktan sonra başlayabilmesi için alıcıların imzalama sırasını her zaman zorunlu kıl.
+  always_enforce_signing_order: İmzalama sırasını her zaman zorunlu kıl
+  ensure_unique_recipients: Alıcıların benzersiz olmasını zorunlu kıl
+  edit_per_party: Tarafa göre düzenle
+  reply_to: Yanıtla
+  bcc_recipients: BCC alıcıları
+  resend_pending: Bekleyenleri tekrar gönder
+  require_email_2fa: E-posta 2FA iste
+  require_phone_2fa: Telefon 2FA iste
+  require_email_2fa_to_open: Açmak için e-posta 2FA iste
+  require_phone_2fa_to_open: Açmak için telefon 2FA iste
+  when_checked_each_signer_must_verify_their_email_with_a_one_time_code_before_accessing_the_document: İşaretlendiğinde, her imzalayan belgeye erişmeden önce e-postasını tek kullanımlık bir kodla doğrulamak zorundadır.
+  when_checked_each_signer_must_verify_their_phone_with_a_one_time_code_before_accessing_the_document: İşaretlendiğinde, her imzalayan belgeye erişmeden önce telefonunu tek kullanımlık bir kodla doğrulamak zorundadır.
+  templates_that_require_email_or_phone_2fa_cannot_be_used_via_a_shared_link: E-posta veya telefon 2FA gerektiren şablonlar paylaşım bağlantısı ile kullanılamaz.
+  when_checked_notifications_will_be_sent_to_the_second_party_once_the_form_is_completed_by_the_previous_party_uncheck_this_option_to_send_notifications_to_all_parties_simultaneously_right_away: İşaretlendiğinde, form bir önceki tarafça tamamlandığında ikinci tarafa bildirim gönderilir. Tüm taraflara aynı anda bildirim göndermek için bu seçeneğin işaretini kaldırın.
+  this_submission_has_multiple_signers_which_prevents_the_use_of_a_sharing_link_html: Bu gönderimde birden fazla imzalayan olduğundan ve hangi imzalayanın hangi alandan sorumlu olduğu belirsiz olduğundan paylaşım bağlantısı kullanılamaz. Bunu çözmek için varsayılan imzalayan bilgilerini tanımlamak üzere bu <a href="https://www.docuseal.com/resources/pre-filling-recipients" class="link font-bold" rel="noopener noreferrer nofollow" target="_blank">rehberi</a> takip edin.
+  this_template_has_multiple_parties_which_prevents_the_use_of_a_sharing_link: Bu şablonda birden fazla taraf olduğundan ve hangi tarafın hangi alandan sorumlu olduğu belirsiz olduğundan paylaşım bağlantısı kullanılamaz. Bunu çözmek için varsayılan taraf bilgilerini tanımlayın.
+
+  # ============================================================
+  # Stripe entegrasyonu
+  # ============================================================
+  stripe_integration: Stripe Entegrasyonu
+  require_all_recipients: Tüm alıcıları gerektir
+  stripe_account_has_been_connected: Stripe hesabı bağlandı.
+  re_connect_stripe: Stripe'ı Yeniden Bağla
+  use_direct_file_attachment_links_in_the_documents: Belgelerde doğrudan dosya eki bağlantıları kullan
+  edit_order: Sırayı Düzenle
+  expirable_file_download_links: Süresi dolan dosya indirme bağlantıları
+  sender_form_fields: Gönderici form alanları
+  default_parties: Varsayılan taraflar
+  authenticate_embedded_form_preview_with_token: Gömülü form önizlemesini token ile doğrula
+
+  # ============================================================
+  # Salesforce
+  # ============================================================
+  salesforce_integration: Salesforce Entegrasyonu
+  salesforce_has_been_connected: Salesforce bağlandı.
+  connect_salesforce_account_to_integrate_with_docuseal: DocuSeal ile entegre etmek için Salesforce hesabını bağlayın
+  re_connect_salesforce: Salesforce'u Yeniden Bağla
+  connect_salesforce: Salesforce Bağla
+
+  # ============================================================
+  # Google Drive
+  # ============================================================
+  add_from_google_drive: Google Drive'dan ekle
+  or_add_from: Veya şuradan ekle
+  upload_a_new_document: Yeni Belge Yükle
+  the_file_is_missing_make_sure_you_have_access_to_it_on_google_drive: Dosya eksik. Google Drive'da erişiminiz olduğundan emin olun.
+  connect_google_drive: Google Drive Bağla
+  google_drive_has_been_connected: Google Drive bağlandı.
+
+  # ============================================================
+  # API / token
+  # ============================================================
+  remove_existing_api_token_and_generated_a_new_one_are_you_sure_: Mevcut API tokenını kaldır ve yenisini oluştur. Emin misiniz?
+  request_signature_multiple_submitters_with_default_values: İmza talep et, varsayılan değerlerle birden fazla alıcı
+  request_signature_single_submitter: İmza talep et, tek alıcı
+  template_details: Şablon detayları
+  open_full_api_reference: Tam API Referansını Aç
+  api_token_has_been_updated: API tokenı güncellendi.
+  count_submissions_have_been_created: '%{count} gönderim oluşturuldu.'
+
+  # ============================================================
+  # Search / Reindex
+  # ============================================================
+  efficient_search_with_search_index: Arama indeksi ile verimli arama
+  reindex: Yeniden indeksle
+  build_search_index: Arama İndeksini Oluştur
+
+  # ============================================================
+  # Devices / Mobile
+  # ============================================================
+  desktop: Masaüstü
+  mobile: Mobil
+  tablet: Tablet
+  reset_default: Varsayılana sıfırla
+  send_signature_request_email: İmza isteği e-postası gönder
+
+  # ============================================================
+  # Reports / API
+  # ============================================================
+  api: API
+  embed: Göm
+  bulk: Toplu
+  invite: Davet
+  api_and_embed: API ve Gömme
+  period: Dönem
+  reports: Raporlar
+  completed_submissions: Tamamlanan gönderimler
+  sms: SMS
+
+  # ============================================================
+  # Veri ikametgâhı
+  # ============================================================
+  eu_data_residency: AB veri ikametgâhı
+  please_enter_your_email_address_associated_with_the_completed_submission: Lütfen tamamlanan gönderim ile ilişkili e-posta adresinizi girin.
+  esignature_disclosure: e-İmza Açıklaması
+  share_link: Paylaşım bağlantısı
+  enable_shared_link: Paylaşım bağlantısını etkinleştir
+  share_link_is_currently_disabled: Paylaşım bağlantısı şu anda devre dışı
+  dynamic_template_with_variables_cannot_be_used_via_shared_link: Değişkenli dinamik şablon paylaşım bağlantısı ile kullanılamaz
+  select_data_residency: Veri ikametgâhı seç
+
+  # ============================================================
+  # Davet metinleri (template ekranı)
+  # ============================================================
+  account_name_has_invited_you_to_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: '%{account_name} sizi güvenli, hızlı ve kullanıcı dostu dijital belge imzalama çözümü ile belgeleri çevrimiçi doldurmak ve imzalamak üzere davet etti.'
+  review_or_download_completed_documents_fill_and_sign_documents_online_effortlessly_with_a_secure_fast_and_user_friendly_digital_document_signing_solution: Tamamlanmış belgeleri inceleyin veya indirin. Güvenli, hızlı ve kullanıcı dostu dijital belge imzalama çözümü ile belgeleri çevrimiçi doldurun ve imzalayın.
+  link_form_fields: Form alanlarını bağla
+  at_least_one_field_must_be_displayed_in_the_form: Formda en az bir alan gösterilmelidir.
+
+  # ============================================================
+  # Onboarding tour
+  # ============================================================
+  start_a_quick_tour_to_learn_how_to_create_an_send_your_first_document: İlk belgenizi oluşturup nasıl göndereceğinizi öğrenmek için hızlı bir tura başlayın
+  start_tour: Tura Başla
+  name_a_z: Ada Göre A-Z
+  recently_used: Son kullanılan
+  newest_first: En yeniden başla
+
+  # ============================================================
+  # Custom HTML emails
+  # ============================================================
+  advanced_settings: Gelişmiş ayarlar
+  text: Metin
+  code: Kod
+  custom_html_emails: Özel HTML e-postalar
+  connect_your_email_to_send_html_emails: HTML e-posta göndermek için e-postanızı bağlayın
+  connect_your_email_or_outlook_account_or_add_smtp_settings_to_send_custom_html_emails: Özel HTML e-postalar göndermek için Gmail veya Outlook hesabınızı bağlayın ya da SMTP ayarlarını ekleyin.
+  connect_gmail_or_outlook: Gmail veya Outlook bağla
+  connect_your_email_to_bulk_send: Toplu göndermek için e-postanızı bağlayın
+  connect_your_email_or_outlook_account_or_add_smtp_settings_to_bulk_send: Toplu göndermek için Gmail veya Outlook hesabınızı bağlayın ya da SMTP ayarlarını ekleyin.
+  are_you_sure_you_want_to_add_recipients_without_sending_to_send_emails_it_requires_to_connect_gmail_or_outlook: Göndermeden alıcı eklemek istediğinize emin misiniz? E-posta göndermek için Gmail veya Outlook bağlamanız gerekir.
+
+  # ============================================================
+  # MCP / token
+  # ============================================================
+  bold: Kalın
+  italic: İtalik
+  underline: Altı çizili
+  undo: Geri al
+  redo: Yeniden yap
+  add_variable: Değişken ekle
+  enter_a_url_or_variable_name: URL veya değişken adı girin
+  new_token: Yeni Token
+  token: Token
+  mcp_server: MCP Sunucusu
+  instructions: Talimatlar
+  please_copy_the_token_below_now_as_it_wont_be_shown_again: Token bir daha gösterilmeyeceğinden lütfen aşağıdaki tokenı şimdi kopyalayın
+  mcp_token_has_been_created: MCP tokenı oluşturuldu.
+  mcp_token_has_been_removed: MCP tokenı kaldırıldı.
+  enable_mcp_server: MCP sunucusunu etkinleştir
+  all_existing_mcp_connections_will_be_stopped_immediately_when_this_setting_is_disabled: Bu ayar devre dışı bırakıldığında mevcut tüm MCP bağlantıları hemen durdurulacak.
+  connect_to_docuseal_mcp: DocuSeal MCP'ye Bağlan
+  add_the_following_to_your_mcp_client_configuration: MCP istemci yapılandırmanıza aşağıdakini ekleyin
+  works_with_claude_desktop_cursor_windsurf_vs_code_and_any_mcp_compatible_client: Claude Desktop, Cursor, Windsurf, VS Code ve herhangi bir MCP uyumlu istemci ile çalışır.
+
+  # ============================================================
+  # Misc - genel
+  # ============================================================
+  count_documents_signed_with_html: '<b>%{count}</b> belge ile imzalandı'
+  send_signature_requests_via_sms_html: SMS ile imza isteği gönder
+  pro_user_seats_used_label: Pro kullanıcı koltukları kullanılıyor
+  qr_code: QR Kod
+  scan_the_qr_code_above_with_your_phone_camera_to_open_and_sign_this_document: Bu belgeyi açıp imzalamak için yukarıdaki QR kodunu telefon kameranızla okutun.
+  powered_by: Sağlayıcı
+  party: Taraf
+  first_party: 'Birinci Taraf'
+  remove_filter: Filtreyi kaldır
+  select: Seç
+  enabled: Etkin
+  disabled: Devre dışı
+  send_email_to_html: '<b>E-posta gönderildi</b> %{submitter_name} adresine'
+  send_email: E-posta Gönder
+  document_download_filename_format: Belge indirme dosya adı biçimi
+
+  # ============================================================
+  # Form preferences
+  # ============================================================
+  form_preferences: Form tercihleri
+  redirect_on_completion_url: Tamamlanma URL'si
+  completion_message: Tamamlanma mesajı
+  email_subject: E-posta konusu
+  email_body: E-posta içeriği
+  send_emails_automatically_on_completion: Tamamlandığında otomatik olarak e-posta gönder
+  submission_requester: Gönderim talep eden
+  invite_by_name: '%{name} ile davet et'
+  invite_via_form_field: Form Alanı ile Davet Et
+  same_as_name: '%{name} ile aynı'
+  default_email: Varsayılan E-posta
+
+  # ============================================================
+  # Misc settings (logo / api / billing)
+  # ============================================================
+  api_key: API Anahtarı
+  logo: Logo
+  add_secret: Secret Ekle
+  edit_secret: Secret Düzenle
+  submission_example_payload: Örnek gönderim payload'ı
+  unable_to_save_signature_label: İmza kaydedilemedi.
+  logo_has_been_uploaded: Logo yüklendi.
+  user_seats_used: kullanılan koltuk
+
+  # ============================================================
+  # Misc - email reminders
+  # ============================================================
+  request_email_otp_verification_with_shared_link: Paylaşım bağlantısı ile e-posta OTP doğrulaması iste
+
+  sent_using_product_name_in_testing_mode_html: 'Test modunda <a href="%{product_url}">%{product_name}</a> kullanılarak gönderildi'
+  sent_using_product_name_free_document_signing_html: '<a href="%{product_url}">%{product_name}</a> ücretsiz belge imzalama ile gönderildi.'
+  sent_with_docuseal_pro_html: '<a href="%{product_url}">DocuSeal Pro</a> ile gönderildi'
+  show_send_with_docuseal_pro_attribution_in_emails_html: 'E-postalarda "<span class="link">DocuSeal Pro</span> ile gönderildi" ibaresini göster'
+
+  # ============================================================
+  # Pop-up promotion
+  # ============================================================
+  sign_up_in_docuseal_console_to_upgrade_on_premises_app_is_completely_standalone_console_is_used_only_to_manage_your_license: Yükseltmek için DocuSeal Konsolu''na kayıt olun. Şirket içi uygulama tamamen bağımsızdır, Konsol yalnızca lisansınızı yönetmek için kullanılır.
+
+  # ============================================================
+  # AI / Make.com / Zapier
+  # ============================================================
+  make_com_integration: Make.com Entegrasyonu
+  zapier_integration: Zapier Entegrasyonu
+  seamlessly_automate_your_document_signing_process_with_make_com: Make.com ile belge imzalama sürecinizi sorunsuzca otomatikleştirin.
+  find_suitable_zapier_templates_to_automate_your_workflow: İş akışınızı otomatikleştirmek için uygun Zapier şablonlarını bulun.
+  get_started: Başlayın
+
+  # ============================================================
+  # Misc - support
+  # ============================================================
+  please_reply_to_this_email_if_you_dont_recognize_this_sign_in_attempt_label: Bu giriş denemesini siz yapmadıysanız bu e-postayı yanıtlayın.
+  docuseal_support: DocuSeal Destek
+  open_source_documents_software: açık kaynaklı belge yazılımı
+
+  # ============================================================
+  # Excel/CSV açıklamaları
+  # ============================================================
+  primarily_opened_with_microsoft_excel_other_options_include_google_sheets_libreoffice_calc_and_openoffice_calc: Genellikle Microsoft Excel ile açılır. Diğer seçenekler arasında Google Sheets, LibreOffice Calc ve OpenOffice Calc bulunur.
+  can_be_opened_with_microsoft_excel_google_sheets_or_any_text_editor_like_notepad: Microsoft Excel, Google Sheets veya Notepad gibi herhangi bir metin düzenleyici ile açılabilir.
+
+  # ============================================================
+  # Pages / pagination
+  # ============================================================
+  policy_links: Politika Bağlantıları
+  markdown_content_e_g: Markdown içerik, ör.
+  privacy_policy: Gizlilik Politikası
+
+  # ============================================================
+  # Misc / extras
+  # ============================================================
+  _variables: Değişkenler
+  upload_more_emails_used: yüklenenler
+
+  # ============================================================
+  # Authors / variables
+  # ============================================================
+  author: Yazar
+  key: Anahtar
+  value: Değer
+
+  # ============================================================
+  # New recipients form actions
+  # ============================================================
+  upload_a_pdf_file: PDF dosyası yükle
+  uploading_label: Yükleniyor
+
+  # ============================================================
+  # Submission events / kayıt olayları
+  # ============================================================
+  submission_event_names:
+    send_email_to_html: '<b>E-posta gönderildi</b> %{submitter_name} adresine'
+    bounce_email_html: '<b>E-posta geri döndü</b> %{submitter_name}'
+    complaint_email_html: '<b>Spam şikayeti</b> %{submitter_name}'
+    send_reminder_email_to_html: '<b>Hatırlatma e-postası gönderildi</b> %{submitter_name} adresine'
+    send_sms_to_html: '<b>SMS gönderildi</b> %{submitter_name} numarasına'
+    send_2fa_sms_to_html: '<b>Doğrulama SMS''i gönderildi</b> %{submitter_name} numarasına'
+    send_2fa_email_to_html: '<b>Doğrulama e-postası gönderildi</b> %{submitter_name} adresine'
+    open_email_by_html: '<b>E-posta açıldı</b> %{submitter_name} tarafından'
+    click_email_by_html: '<b>E-posta bağlantısına tıklandı</b> %{submitter_name} tarafından'
+    click_sms_by_html: '<b>SMS bağlantısına tıklandı</b> %{submitter_name} tarafından'
+    phone_verified_by_html: '<b>Telefon doğrulandı</b> %{submitter_name} tarafından'
+    email_verified_by_html: '<b>E-posta doğrulandı</b> %{submitter_name} tarafından'
+    start_form_by_html: '<b>Gönderim başlatıldı</b> %{submitter_name} tarafından'
+    view_form_by_html: '<b>Form görüntülendi</b> %{submitter_name} tarafından'
+    invite_party_by_html: '<b>Davet edildi</b> %{invited_submitter_name} - %{submitter_name} tarafından'
+    complete_form_by_html: '<b>Gönderim tamamlandı</b> %{submitter_name} tarafından'
+    start_verification_by_html: '<b>Kimlik doğrulama başlatıldı</b> %{submitter_name} tarafından'
+    complete_verification_by_html: '<b>Kimlik doğrulama tamamlandı</b> %{submitter_name} tarafından %{provider} ile'
+    start_kba_by_html: '<b>KBA başlatıldı</b> %{submitter_name} tarafından'
+    complete_kba_by_html: '<b>KBA tamamlandı</b> %{submitter_name} tarafından'
+    fail_kba_by_html: '<b>KBA başarısız oldu</b> %{submitter_name} tarafından'
+    api_complete_form_by_html: '<b>Gönderim API ile tamamlandı</b> %{submitter_name} tarafından'
+    decline_form_by_html: '<b>Form reddedildi</b> %{submitter_name} tarafından'
+    delegate_form_by_html: '<b>Devredildi</b> %{from} → %{to}'
+
+  # ============================================================
+  # Submission sources
+  # ============================================================
+  submission_sources:
+    api: API
+    bulk: Toplu Gönderim
+    embed: Gömme
+    invite: Davet
+    link: Bağlantı
+    mcp: MCP
+
+  # ============================================================
+  # Devise (Rails authentication)
+  # ============================================================
+  devise:
+    confirmations:
+      confirmed: E-posta adresiniz başarıyla onaylandı.
+    failure:
+      unconfirmed: Devam etmek için e-posta adresinizi onaylamalısınız.
+    mailer:
+      confirmation_instructions:
+        subject: E-posta adresinizi onaylayın
+
+  # ============================================================
+  # Import list (Excel/CSV)
+  # ============================================================
+  import_list:
+    select_worksheet: Çalışma Sayfası Seç
+    open: Aç
+    remove: Kaldır
+    recipient_field: Alıcı alanı
+    spreadsheet_column: Excel sütunu
+    select_field: Alan Seç
+    select_column: Sütun Seç
+    new_field_mapping: Yeni Alan Eşlemesi
+    total_entries: Toplam giriş
+    upload_csv_or_xlsx_spreadsheet: CSV veya XLSX Excel Yükle
+    click_to_upload: Yüklemek için tıklayın
+    or_drag_and_drop_files: veya dosyaları sürükleyip bırakın.
+    or: Veya
+    download: indirin
+    a_sample_spreadsheet_to_fill_and_import: doldurmak ve içe aktarmak için örnek bir Excel
+
+  # ============================================================
+  # App tour
+  # ============================================================
+  app_tour:
+    start: Başla
+    previous: Önceki
+    next: Sonraki
+    template_and_submissions: 'Şablonlar ve Gönderimler'
+    template_and_submissions_description: "İş akışınıza en uygun görünümü seçebilirsiniz. Yeniden kullanılabilir belge şablonları oluşturmak için 'Şablonlar' görünümünü, tek tek belge imzalamak veya her bir imza isteğinin durumunu incelemek için 'Gönderimler' görünümünü seçin."
+    upload_a_pdf_file: 'PDF dosyası yükle'
+    upload_a_pdf_file_description: 'İmza formu şablonu oluşturmak için bir PDF belgesi yükleyin.'
+    select_a_signer_party: 'İmzalayan taraf seçin'
+    select_a_signer_party_description: 'Bu açılır menü, bir imzalayan taraf rolü seçmenize veya belge 2 ya da daha fazla imza gerektiriyorsa yeni bir taraf eklemenize olanak tanır.'
+    available_parties: 'Mevcut taraflar'
+    available_parties_description: 'Bu liste tüm mevcut tarafları rol adlarıyla birlikte içerir. Seçildikten sonra imzalayan taraf için alanlar ekleyip yapılandırabilirsiniz.'
+    available_field_types: 'Mevcut alan türleri'
+    available_field_types_description: 'Bu bölüm, veri girişi veya imza toplamak için belgeye eklenebilecek tüm mevcut alan türlerini içerir.'
+    text_input_field: 'Metin giriş alanı'
+    text_input_field_description: 'Bu alan, kullanıcıların ad veya e-posta gibi metin tabanlı bilgileri girmesini sağlar.'
+    signature_field: 'İmza alanı'
+    signature_field_description: 'Bu alan imzalayanlardan imza toplamak için kullanılır.'
+    added_fields: 'Eklenen alanlar'
+    added_fields_description: 'Bu liste belgeye eklenen tüm alanları gösterir. Sıralayabilir, düzenleyebilir veya kaldırabilirsiniz.'
+    open_field_settings: 'Alan ayarlarını aç'
+    open_field_settings_description: 'Sağ tarafta, alan adının yanında, alan ayarlarını açan bir ayarlar simgesi vardır.'
+    field_settings: 'Alan ayarları'
+    field_settings_description: 'Her alan, font boyutunu ayarlamak, zorunlu hale getirmek veya açıklama eklemek gibi gereksinimlerinize uyacak şekilde ayarlar üzerinden özelleştirilebilir.'
+    send_document: 'Belgeyi imzalamak üzere gönder'
+    send_document_description: 'Belgeyi imzalamak üzere göndermeden önce alıcıları yapılandırabilir, e-posta adresi veya telefon numaralarını ekleyebilir ve e-posta içeriğini özelleştirebilirsiniz.'
+    sign_yourself: 'Belgeyi kendin imzala'
+    sign_yourself_description: 'Bu buton, imzanızı gerektiren belgelere imzanızı eklemenize olanak tanır.'
+    copy_and_share_link: 'Bağlantıyı kopyala ve paylaş'
+    copy_and_share_link_description: 'Belgeyi paylaşmak için bu bağlantıyı kopyalayın. Bağlantıya sahip olan herkes e-posta adresini girdikten sonra imzalayabilir.'
+    sign_the_document: 'Belgeyi imzala'
+    sign_the_document_description: 'İmzalayanlardan biri iseniz bu buton belgeyi imzalamanıza olanak tanır.'
+    send_for_signing: 'İmzalamak üzere gönder'
+    add_recipients: 'Alıcı ekle'
+    add_recipients_description: 'E-posta adreslerini veya telefon numaralarını girerek belgenin imzalanması için yeni alıcılar ekleyin.'
+    settings: 'Ayarlar'
+    settings_account_description: 'Kapsamlı hesap ayarlarıyla e-imzalama deneyimini özelleştirebilir ve daha fazla kullanıcı davet edebilirsiniz.'
+    support: 'Destek'
+    support_description: 'Sorularınız için self-servis yapay zeka asistanımızı kullanabilir veya support@docuseal.com adresine e-posta gönderebilirsiniz.'
+    settings_template_description: 'Hesap ayarları sayfasına erişmek için bu butonu kullanın.'
+
+  # ============================================================
+  # Doorkeeper (OAuth)
+  # ============================================================
+  doorkeeper:
+    scopes:
+      write: Verilerinizi güncelle
+      read: Verilerinizi oku
+      mcp: MCP kullan
+      claudeai: Claude AI kullan
+
+  # ============================================================
+  # Pagination
+  # ============================================================
+  pagination:
+    submissions:
+      range_with_total: "%{from}-%{to} / toplam %{count} gönderim"
+      range_without_total: "%{from}-%{to} gönderim"
+    templates:
+      range_with_total: "%{from}-%{to} / toplam %{count} şablon"
+      range_without_total: "%{from}-%{to} şablon"
+    template_folders:
+      range_with_total: "%{from}-%{to} / toplam %{count} klasör"
+      range_without_total: "%{from}-%{to} klasör"
+    users:
+      range_with_total: "%{from}-%{to} / toplam %{count} kullanıcı"
+      range_without_total: "%{from}-%{to} kullanıcı"
+    items:
+      range_with_total: "%{from}-%{to} / toplam %{count} öğe"
+      range_without_total: "%{from}-%{to} öğe"
+    events:
+      range_with_total: "%{from}-%{to} / toplam %{count} olay"
+      range_without_total: "%{from}-%{to} olay"
+
+  # ============================================================
+  # Variable names (template editor placeholders)
+  # ============================================================
+  variables:
+    account_name: Hesap adı
+    submitter_link: Alıcı bağlantısı
+    template_name: Şablon adı
+    submission_submitters: Alıcı listesi
+    submission_link: Gönderim bağlantısı
+    documents_link: Belgeler bağlantısı
+
+  # ============================================================
+  # Tarih/saat formatı (Türkçe: gün ay yıl)
+  # ============================================================
+  time:
+    formats:
+      detailed: "%d %B %Y %H:%M:%S"
+      default: "%d %B %Y %H:%M"
+      short: "%d %b %H:%M"
+      long: "%d %B %Y %H:%M"
+  date:
+    formats:
+      default: "%d.%m.%Y"
+      short: "%d %b"
+      long: "%d %B %Y"
+    day_names:
+      - Pazar
+      - Pazartesi
+      - Salı
+      - Çarşamba
+      - Perşembe
+      - Cuma
+      - Cumartesi
+    abbr_day_names:
+      - Paz
+      - Pzt
+      - Sal
+      - Çar
+      - Per
+      - Cum
+      - Cmt
+    month_names:
+      -
+      - Ocak
+      - Şubat
+      - Mart
+      - Nisan
+      - Mayıs
+      - Haziran
+      - Temmuz
+      - Ağustos
+      - Eylül
+      - Ekim
+      - Kasım
+      - Aralık
+    abbr_month_names:
+      -
+      - Oca
+      - Şub
+      - Mar
+      - Nis
+      - May
+      - Haz
+      - Tem
+      - Ağu
+      - Eyl
+      - Eki
+      - Kas
+      - Ara

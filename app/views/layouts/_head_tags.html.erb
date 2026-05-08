@@ -1,4 +1,5 @@
 <title>
-  <%= content_for(:html_title) || (signed_in? ? 'DocuSeal' : 'DocuSeal | Open Source Document Signing') %>
+  <%# DOCSIGN-CUSTOM: generic title — DocuSeal mention removed for white-label deployment %>
+  <%= content_for(:html_title) || 'docsign' %>
 </title>
 <%= render 'shared/meta' %>

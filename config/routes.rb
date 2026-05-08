@@ -206,6 +206,7 @@ Rails.application.routes.draw do
         patch :update_contact
         patch :update_password
         patch :update_app_url
+        patch :update_locale # DOCSIGN-CUSTOM: TR/EN locale switcher
       end
     end
   end

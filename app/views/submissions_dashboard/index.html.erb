@@ -8,18 +8,14 @@
       <%= t('submissions') %>
     </h1>
   </div>
-  <div class="flex space-x-2">
+  <div class="flex space-x-2 items-center">
     <% if params[:q].present? || @pagy.pages > 1 || filter_params.present? %>
       <%= render 'shared/search_input' %>
     <% end %>
-    <% if can?(:create, ::Template) %>
-      <span class="hidden sm:block">
-        <%= render 'templates/upload_button' %>
-      </span>
-      <%= link_to new_template_path, class: 'white-button !border gap-2', data: { turbo_frame: :modal } do %>
-        <%= svg_icon('plus', class: 'w-6 h-6 stroke-2') %>
-        <span class="hidden md:block"><%= t('create') %></span>
-      <% end %>
+    <%# DOCSIGN-CUSTOM: always show Archive link in header area (was only at bottom) %>
+    <%= link_to submissions_archived_index_path, class: 'flex items-center gap-1 text-sm hover:underline whitespace-nowrap' do %>
+      <%= svg_icon('archive', class: 'w-4 h-4') %>
+      <span class="hidden md:inline"><%= t('view_archived') %></span>
     <% end %>
   </div>
 </div>

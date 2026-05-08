@@ -217,6 +217,10 @@ class SubmitterMailer < ApplicationMailer
   def build_invite_subject(subject, email_config, submitter)
     if email_config || subject
       ReplaceEmailVariables.call(subject || email_config.value['subject'], submitter:)
+    elsif submitter.submission.brand
+      # DOCSIGN-CUSTOM: branded sends always use the "sign a document" subject —
+      # this matches what the branded email body actually says.
+      I18n.t(:you_are_invited_to_sign_a_document)
     elsif submitter.with_signature_fields?
       I18n.t(:you_are_invited_to_sign_a_document)
     else
