@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 class AccountsController < ApplicationController
+  # DOCSIGN-CUSTOM: 'tr' added at top so it's the first option for Turkish-default deployment
   LOCALE_OPTIONS = {
+    'tr' => 'Türkçe',
+    'en' => 'English',
     'en-US' => 'English (United States)',
     'en-GB' => 'English (United Kingdom)',
     'fr-FR' => 'Français',

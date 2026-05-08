@@ -30,9 +30,8 @@
         <p class="text-gray-700">
           <%= t('configure_smtp_settings_in_order_to_send_emails_') %>
           <br>
-          <a class="link font-medium" data-turbo-frame="_top" href="<%= settings_email_index_path %>">
-            <%= t('go_to_smtp_settings') %>
-          </a>
+          <%# DOCSIGN-CUSTOM: SMTP settings page disabled — instruct ops to set ENV variables instead %>
+          <span class="font-medium"><%= t('go_to_smtp_settings') %></span>
         </p>
       </div>
     </div>

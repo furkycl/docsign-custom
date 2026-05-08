@@ -172,18 +172,16 @@ Rails.application.routes.draw do
   end
 
   scope '/settings', as: :settings do
+    # DOCSIGN-CUSTOM: Pro/integration settings routes disabled for the
+    # internal-tool deployment. They previously leaked DocuSeal-Pro upsells
+    # and exposed sensitive infrastructure (X-Auth-Token, webhook payloads).
+    # Re-enable individually here if a future requirement needs them.
+    #
+    # Disabled: storage, sms, mcp, api, reveal_access_token, email (SMTP),
+    #           sso, webhooks (+ webhook_events).
     unless Docuseal.multitenant?
-      resources :storage, only: %i[index create], controller: 'storage_settings'
       resources :search_entries_reindex, only: %i[create]
-      resources :sms, only: %i[index], controller: 'sms_settings'
-      resources :mcp, only: %i[index new create destroy], controller: 'mcp_settings'
     end
-    if Docuseal.demo? || !Docuseal.multitenant?
-      resources :api, only: %i[index create], controller: 'api_settings'
-      resource :reveal_access_token, only: %i[show create], controller: 'reveal_access_token'
-    end
-    resources :email, only: %i[index create], controller: 'email_smtp_settings'
-    resources :sso, only: %i[index], controller: 'sso_settings'
     resources :notifications, only: %i[index create], controller: 'notifications_settings'
     resource :esign, only: %i[show create new update destroy], controller: 'esign_settings'
     resources :users, only: %i[index]
@@ -192,14 +190,6 @@ Rails.application.routes.draw do
     resources :integration_users, only: %i[index], path: 'users/:status', controller: 'users',
                                   defaults: { status: :integration }
     resource :personalization, only: %i[show create], controller: 'personalization_settings'
-    resources :webhooks, only: %i[index show new create update destroy], controller: 'webhook_settings' do
-      post :resend
-
-      resources :events, only: %i[show], controller: 'webhook_events' do
-        post :resend, on: :member
-        post :refresh, on: :member
-      end
-    end
     resource :account, only: %i[show update destroy]
     resources :profile, only: %i[index] do
       collection do

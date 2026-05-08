@@ -96,17 +96,10 @@
         </span>
       </a>
     </div>
-    <div
-      v-if="attribution"
-      class="text-center mt-4"
-    >
-      {{ t('powered_by') }}
-      <a
-        href="https://www.docuseal.com/start"
-        target="_blank"
-        class="underline"
-      >DocuSeal</a> - {{ t('open_source_documents_software') }}
-    </div>
+    <!-- DOCSIGN-CUSTOM: Powered-by DocuSeal attribution removed for white-label deployment -->
+    <!-- The link to DocuSeal.com and the "open source documents software" caption are %>
+         no longer shown on the signer's completion screen. -->
+
   </div>
 </template>
 
