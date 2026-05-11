@@ -19,10 +19,12 @@
           <%= svg_icon('calendar', class: 'w-4 h-4') %>
           <span><%= l(template.created_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %></span>
         </span>
-        <% if template.archived_at? %>
+        <%# DOCSIGN-CUSTOM: gönderim sayısı — şablonun ne kadar kullanıldığını gösterir %>
+        <% submissions_count = template.submissions.where(archived_at: nil).count %>
+        <% if submissions_count > 0 %>
           <span class="flex items-center space-x-1 w-1/2">
-            <%= svg_icon('folder', class: 'w-4 h-4 flex-shrink-0') %>
-            <span class="truncate"><%= template.folder.full_name %></span>
+            <%= svg_icon('send', class: 'w-4 h-4 flex-shrink-0') %>
+            <span><%= t('submissions_count_html', count: submissions_count, default: "%{count} gönderim") %></span>
           </span>
         <% end %>
       </p>

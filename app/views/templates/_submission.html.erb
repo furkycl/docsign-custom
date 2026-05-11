@@ -1,6 +1,9 @@
 <%# DOCSIGN-CUSTOM: status badge palette — gray for outgoing/in-flight, green for completed, red for declined %>
 <% status_badges = { 'awaiting' => 'badge-neutral', 'sent' => 'badge-neutral', 'completed' => 'badge-success', 'opened' => 'badge-neutral', 'declined' => 'badge-error' } %>
-<div class="bg-base-200 rounded-2xl flex flex-col sm:flex-row items-strech">
+<%# DOCSIGN-CUSTOM: brand-aware visual marker — sol kenarda 4px renkli bant %>
+<% brand = submission.brand %>
+<% brand_border_style = brand ? "border-left: 4px solid #{brand.primary_color};" : '' %>
+<div class="bg-base-200 rounded-2xl flex flex-col sm:flex-row items-strech overflow-hidden" style="<%= brand_border_style %>">
   <% if local_assigns[:with_template] %>
     <% template = submission.template %>
     <a href="<%= template ? template_path(template) : submission_path(submission) %>" class="px-5 sm:pr-3 py-3 group sm:rounded-l-2xl sm:rounded-tr-none rounded-t-2xl flex sm:flex-col justify-between sm:w-52 w-full flex-shrink-0 bg-base-300/60 space-x-2 sm:space-x-0">
@@ -12,6 +15,15 @@
             <%= svg_icon('arrow_right', class: 'w-4 h-4 sm:inline group-hover:visible invisible hidden') %>
           </span>
         </div>
+        <%# DOCSIGN-CUSTOM: brand badge — şablon adının altında marka adı %>
+        <% if brand %>
+          <div class="mt-1.5">
+            <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wide whitespace-nowrap"
+                  style="background-color: <%= brand.primary_color %>15; color: <%= brand.primary_color %>;">
+              <%= brand.name %>
+            </span>
+          </div>
+        <% end %>
       </div>
       <div class="flex-shrink-0 sm:mt-2 max-w-[50%] md:max-w-full">
         <div class="flex text-xs flex-col text-base-content/60  space-y-0.5">

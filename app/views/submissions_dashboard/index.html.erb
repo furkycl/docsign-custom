@@ -56,9 +56,21 @@
   <div class="space-y-4">
     <%= render partial: 'templates/submission', collection: @submissions, locals: { with_template: true } %>
   </div>
-<% end %>
-<% if params[:q].blank? && params[:status].blank? && filter_params.blank? && @pagy.count.present? && @pagy.count < 5 %>
-  <%= render 'templates/dropzone' %>
+<%# DOCSIGN-CUSTOM: empty state — hiç gönderim yokken davet edici karşılama %>
+<% elsif params[:q].blank? && params[:status].blank? && filter_params.blank? %>
+  <div class="flex flex-col items-center justify-center text-center py-16 px-4">
+    <div class="bg-base-200 rounded-full p-6 mb-6">
+      <%= svg_icon('send', class: 'w-12 h-12 text-base-content/50') %>
+    </div>
+    <h2 class="text-2xl font-semibold mb-2"><%= t('no_submissions_yet', default: 'Henüz hiç gönderim yok') %></h2>
+    <p class="text-base-content/60 mb-6 max-w-md">
+      <%= t('no_submissions_hint', default: 'Şablonlar sayfasından bir şablon seçip alıcıya gönderdiğinde burada listelenecek.') %>
+    </p>
+    <%= link_to root_path, class: 'btn btn-neutral text-white px-6' do %>
+      <%= svg_icon('file_text', class: 'w-5 h-5') %>
+      <span><%= t('go_to_templates', default: 'Şablonlara git') %></span>
+    <% end %>
+  </div>
 <% end %>
 <% if @submissions.present? || (params[:q].blank? && filter_params.blank?) %>
   <% if @pagy.pages > 1 %>
