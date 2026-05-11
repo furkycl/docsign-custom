@@ -39,6 +39,9 @@ class DashboardController < ApplicationController
   def maybe_render_landing
     return if signed_in?
 
-    render 'pages/landing'
+    # DOCSIGN-CUSTOM: DocuSeal landing/marketing sayfası kaldırıldı.
+    # Giriş yapmamış kullanıcı doğrudan sign-in sayfasına yönlendirilir.
+    # Logout sonrası da Devise root_path'e atar → buradan /sign_in'e geçer.
+    redirect_to new_user_session_path
   end
 end
