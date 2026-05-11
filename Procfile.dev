@@ -1,2 +1,6 @@
 web: PORT=3000 bundle exec rails s -p 3000
-webpacker: bundle exec ./bin/shakapacker-dev-server
+# DOCSIGN-CUSTOM: shakapacker-dev-server was exiting 0 after first compile (FUSE
+# bind-mount file-watching quirk), which made foreman tear down the entire
+# process group. Use the bare shakapacker watcher instead — recompiles JS on
+# change, no HMR but the dev tab stays alive.
+webpacker: bundle exec ./bin/shakapacker --watch
