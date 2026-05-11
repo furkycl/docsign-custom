@@ -1,60 +1,93 @@
-<div class="h-36 relative group">
-  <a href="<%= template_path(template) %>" class="flex h-full flex-col justify-between rounded-2xl pt-6 px-7 w-full bg-base-200 before:border-2 before:border-base-300 before:border-dashed before:absolute before:left-0 before:right-0 before:top-0 before:bottom-0 before:hidden before:rounded-2xl" data-targets="dashboard-dropzone.templateCards">
-    <div class="text-xl font-semibold" style="line-height: 1.6rem; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;">
-      <% if template.template_accesses.present? %>
-        <%= svg_icon('lock', class: 'w-6 h-6 inline -translate-y-[4px]') %>
+<%# DOCSIGN-CUSTOM: Mac Finder-style template kartı — üstte PDF ilk sayfa önizlemesi, %>
+<%# altta isim ve metadata. Eski "metin kartı" tasarımından görsel kartlara geçiş. %>
+<%
+  first_attachment = template.schema_documents.first || template.documents_attachments.first
+  preview_images = first_attachment&.preview_images || []
+  # İlk sayfa (filename "0.jpg") tercih, yoksa ilk preview
+  first_preview = preview_images.find { |img| img.filename.base.to_i.zero? } || preview_images.first
+  preview_url = first_preview&.url
+  submissions_count = template.submissions.where(archived_at: nil).count
+%>
+<div class="relative group">
+  <a href="<%= template_path(template) %>"
+     class="block bg-base-100 rounded-2xl border border-base-300 overflow-hidden hover:shadow-md hover:border-base-content/20 transition-all duration-150"
+     data-targets="dashboard-dropzone.templateCards">
+
+    <%# Preview alanı — PDF ilk sayfa thumbnail (yoksa generic icon) %>
+    <div class="aspect-[4/3] w-full bg-gradient-to-br from-base-200 to-base-300/60 relative flex items-center justify-center overflow-hidden">
+      <% if preview_url.present? %>
+        <%= image_tag preview_url,
+              alt: template.name,
+              class: 'w-full h-full object-cover object-top',
+              loading: 'lazy' %>
+        <%# üst kısımda hafif beyaz gradient — sayfa kenarı belli olsun %>
+        <div class="absolute inset-x-0 top-0 h-2 bg-gradient-to-b from-white/40 to-transparent"></div>
+      <% else %>
+        <div class="flex flex-col items-center text-base-content/40">
+          <%= svg_icon('file_text', class: 'w-16 h-16') %>
+          <span class="text-xs mt-2 uppercase tracking-wide">PDF</span>
+        </div>
       <% end %>
-      <% template.name.split(/(_)/).each do |item| %><%= item %><wbr><% end %>
+
+      <%# Sağ üst köşede kilit ikonu (template_accesses varsa) %>
+      <% if template.template_accesses.present? %>
+        <div class="absolute top-2 right-2 bg-base-100/80 backdrop-blur-sm rounded-full p-1.5">
+          <%= svg_icon('lock', class: 'w-3.5 h-3.5') %>
+        </div>
+      <% end %>
+
+      <%# Sağ alt köşede gönderim sayısı rozeti %>
+      <% if submissions_count > 0 %>
+        <div class="absolute bottom-2 right-2 bg-base-100/95 backdrop-blur-sm rounded-full px-2 py-0.5 flex items-center space-x-1 text-xs font-medium shadow-sm">
+          <%= svg_icon('send', class: 'w-3 h-3') %>
+          <span><%= submissions_count %></span>
+        </div>
+      <% end %>
     </div>
-    <div class="pb-6 pt-1 space-y-1" data-targets="dashboard-dropzone.hiddenOnDrag">
-      <p class="flex items-center space-x-1 text-xs text-base-content/60">
-        <%= svg_icon('user', class: 'w-4 h-4') %>
-        <span><%= template.author.full_name.presence || template.author.email.to_s.sub(/\+\w+@/, '@') %></span>
+
+    <%# Alt bilgi kısmı — isim + tarih + yazar %>
+    <div class="px-4 py-3 space-y-1">
+      <div class="font-medium text-base leading-tight line-clamp-2">
+        <% template.name.split(/(_)/).each do |item| %><%= item %><wbr><% end %>
+      </div>
+      <div class="flex items-center text-xs text-base-content/60 space-x-1">
+        <%= svg_icon('calendar', class: 'w-3.5 h-3.5 flex-shrink-0') %>
+        <span><%= l(template.created_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %></span>
         <% if template.account_id != current_account.id %>
-          <span class="badge badge-neutral badge-outline badge-sm text-[10px] uppercase"><%= t('shared') %></span>
+          <span class="badge badge-neutral badge-outline badge-xs text-[9px] uppercase ml-1"><%= t('shared') %></span>
         <% end %>
-      </p>
-      <p class="flex text-xs text-base-content/60">
-        <span class="flex items-center space-x-1 w-1/2">
-          <%= svg_icon('calendar', class: 'w-4 h-4') %>
-          <span><%= l(template.created_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) %></span>
-        </span>
-        <%# DOCSIGN-CUSTOM: gönderim sayısı — şablonun ne kadar kullanıldığını gösterir %>
-        <% submissions_count = template.submissions.where(archived_at: nil).count %>
-        <% if submissions_count > 0 %>
-          <span class="flex items-center space-x-1 w-1/2">
-            <%= svg_icon('send', class: 'w-4 h-4 flex-shrink-0') %>
-            <span><%= t('submissions_count_html', count: submissions_count, default: "%{count} gönderim") %></span>
-          </span>
-        <% end %>
-      </p>
+      </div>
     </div>
   </a>
-  <div class="absolute top-0 bottom-0 w-0 items-center hidden md:group-hover:flex" style="right: 37px" data-targets="dashboard-dropzone.hiddenOnDrag">
-    <div class="space-y-1">
-      <%# DOCSIGN-CUSTOM: removed "Move folder" and "Clone" hover buttons (folder mgmt + cloning unused in internal flow) %>
-      <% if template.archived_at? && can?(:update, template) %>
-        <span class="tooltip tooltip-left" data-tip="<%= t('restore') %>">
-          <%= button_to template_restore_index_path(template), class: 'btn btn-xs hover:btn-outline bg-base-200 btn-circle' do %>
-            <%= svg_icon('rotate', class: 'w-4 h-4 enabled') %>
-            <%= svg_icon('loader', class: 'w-4 h-4 animate-spin disabled') %>
-          <% end %>
-        </span>
-      <% elsif can?(:update, template) %>
-        <span class="tooltip tooltip-left" data-tip="<%= t('edit') %>">
-          <a href="<%= edit_template_path(template) %>" class="btn btn-xs hover:btn-outline bg-base-200 btn-circle">
-            <%= svg_icon('pencil', class: 'w-4 h-4') %>
-          </a>
-        </span>
-      <% end %>
-      <% if can?(:destroy, template) %>
-        <span class="tooltip tooltip-left" data-tip="<%= template.archived_at? ? t('delete') : t('archive') %>">
-          <%= button_to template_path(template), data: template.archived_at? ? { turbo_confirm: t('template_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_') } : {}, params: { permanently: template.archived_at? }.compact_blank, method: :delete, class: 'btn btn-xs hover:btn-outline bg-base-200 btn-circle', aria_label: t('restore') do %>
-            <%= svg_icon(template.archived_at? ? 'trash' : 'archive', class: 'w-4 h-4 enabled') %>
-            <%= svg_icon('loader', class: 'w-4 h-4 animate-spin disabled') %>
-          <% end %>
-        </span>
-      <% end %>
-    </div>
+
+  <%# Hover butonları — sağ üst köşede %>
+  <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-150" data-targets="dashboard-dropzone.hiddenOnDrag">
+    <% if template.archived_at? && can?(:update, template) %>
+      <span class="tooltip tooltip-left" data-tip="<%= t('restore') %>">
+        <%= button_to template_restore_index_path(template), class: 'btn btn-xs hover:btn-outline bg-base-100 btn-circle shadow-sm' do %>
+          <%= svg_icon('rotate', class: 'w-3.5 h-3.5 enabled') %>
+          <%= svg_icon('loader', class: 'w-3.5 h-3.5 animate-spin disabled') %>
+        <% end %>
+      </span>
+    <% elsif can?(:update, template) %>
+      <span class="tooltip tooltip-left" data-tip="<%= t('edit') %>">
+        <a href="<%= edit_template_path(template) %>" class="btn btn-xs hover:btn-outline bg-base-100 btn-circle shadow-sm">
+          <%= svg_icon('pencil', class: 'w-3.5 h-3.5') %>
+        </a>
+      </span>
+    <% end %>
+    <% if can?(:destroy, template) %>
+      <span class="tooltip tooltip-left ml-1" data-tip="<%= template.archived_at? ? t('delete') : t('archive') %>">
+        <%= button_to template_path(template),
+              data: template.archived_at? ? { turbo_confirm: t('template_deletion_is_irreversible_and_will_permanently_remove_all_associated_signed_documents_with_it_are_you_sure_') } : {},
+              params: { permanently: template.archived_at? }.compact_blank,
+              method: :delete,
+              class: 'btn btn-xs hover:btn-outline bg-base-100 btn-circle shadow-sm',
+              aria_label: t('restore') do %>
+          <%= svg_icon(template.archived_at? ? 'trash' : 'archive', class: 'w-3.5 h-3.5 enabled') %>
+          <%= svg_icon('loader', class: 'w-3.5 h-3.5 animate-spin disabled') %>
+        <% end %>
+      </span>
+    <% end %>
   </div>
 </div>
