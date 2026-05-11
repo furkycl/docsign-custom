@@ -96,9 +96,8 @@
         </span>
       </a>
     </div>
-    <!-- DOCSIGN-CUSTOM: Powered-by DocuSeal attribution removed for white-label deployment -->
-    <!-- The link to DocuSeal.com and the "open source documents software" caption are %>
-         no longer shown on the signer's completion screen. -->
+    <!-- DOCSIGN-CUSTOM: Powered-by DocuSeal attribution removed for white-label deployment. -->
+    <!-- The DocuSeal.com link and the open-source caption no longer show on the signer's completion screen. -->
 
   </div>
 </template>

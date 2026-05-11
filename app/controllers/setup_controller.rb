@@ -40,7 +40,9 @@ class SetupController < ApplicationController
 
       sign_in(@user)
 
-      redirect_to newsletter_path
+      # DOCSIGN-CUSTOM: setup sonrası DocuSeal Newsletter spam'ına yönlendirme yerine
+      # direkt admin dashboard'a düş.
+      redirect_to root_path
     else
       render :index, status: :unprocessable_content
     end
