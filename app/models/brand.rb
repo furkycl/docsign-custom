@@ -4,18 +4,19 @@
 #
 # Table name: brands
 #
-#  id                 :bigint           not null, primary key
-#  active             :boolean          default(TRUE), not null
-#  email_from_address :string
-#  email_from_name    :string
-#  email_intro_text   :text
-#  logo_path          :string           not null
-#  name               :string           not null
-#  primary_color      :string           default("#1F2937"), not null
-#  slug               :string           not null
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
-#  account_id         :bigint           not null
+#  id                                                             :bigint           not null, primary key
+#  active                                                         :boolean          default(TRUE), not null
+#  email_from_address                                             :string
+#  email_from_name                                                :string
+#  email_intro_text                                               :text
+#  logo_background_color(E-postada logo container BG rengi (hex)) :string           default("#FFFFFF"), not null
+#  logo_path                                                      :string           not null
+#  name                                                           :string           not null
+#  primary_color                                                  :string           default("#1F2937"), not null
+#  slug                                                           :string           not null
+#  created_at                                                     :datetime         not null
+#  updated_at                                                     :datetime         not null
+#  account_id                                                     :bigint           not null
 #
 # Indexes
 #
@@ -34,14 +35,20 @@ class Brand < ApplicationRecord
       name: 'Academia United',
       logo_path: 'brands/academia_united.svg',
       primary_color: '#1E40AF',
+      # Logo siyah halkalardan oluşuyor — koyu mavi BG'de görünmez.
+      # Beyaz arka plan üzerinde net görünür.
+      logo_background_color: '#FFFFFF',
       email_from_name: 'Academia United',
       email_intro_text: 'Size Academia United tarafından imzalamanız gereken bir belge gönderildi.'
     },
     {
       slug: 'linguland',
       name: 'Linguland',
-      logo_path: 'brands/linguland.svg',
+      logo_path: 'brands/linguland.webp',
       primary_color: '#15803D',
+      # Logo beyaz + turuncu — açık tonlar. Beyaz BG'de kaybolur.
+      # Marka yeşili (primary) üzerinde net görünür.
+      logo_background_color: '#15803D',
       email_from_name: 'Linguland',
       email_intro_text: 'Size Linguland tarafından imzalamanız gereken bir belge gönderildi.'
     },
@@ -50,6 +57,9 @@ class Brand < ApplicationRecord
       name: 'Topstudy',
       logo_path: 'brands/topstudy.svg',
       primary_color: '#EA580C',
+      # Logo harfleri beyaz/sarı/mavi — KOYU BG şart. Markanın primary turuncusu üzerinde
+      # beyaz harfler net görünür. Asla beyaz BG kullanma!
+      logo_background_color: '#EA580C',
       email_from_name: 'Topstudy',
       email_intro_text: 'Size Topstudy tarafından imzalamanız gereken bir belge gönderildi.'
     }

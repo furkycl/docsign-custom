@@ -2,15 +2,20 @@
 <% submit_url = submit_form_url(slug: @submitter.slug, t: SubmissionEvents.build_tracking_param(@submitter, 'click_email'), host: @custom_domain || ENV.fetch('EMAIL_HOST', Docuseal.default_url_options[:host])) %>
 
 <% if @brand.present? %>
-  <%# Branded header — solid color block with brand name; logo follows below if asset host is configured %>
-  <div style="background-color: <%= @brand.primary_color %>; color: #FFFFFF; padding: 20px 24px; border-radius: 8px 8px 0 0; text-align: center; font-family: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
-    <% logo_url = image_url(@brand.logo_asset_path) rescue nil %>
+  <%# DOCSIGN-CUSTOM: brand header — iki katmanlı yapı. %>
+  <%# Logo container BG'si brand.logo_background_color kullanır (logoyu KAPATMAYACAK şekilde). %>
+  <%# Hemen altında ince brand_color şerit görsel kimlik için kalır. %>
+  <% logo_url = image_url(@brand.logo_asset_path) rescue nil %>
+  <% logo_bg = @brand.respond_to?(:logo_background_color) && @brand.logo_background_color.present? ? @brand.logo_background_color : '#FFFFFF' %>
+  <div style="background-color: <%= logo_bg %>; padding: 24px; border-radius: 8px 8px 0 0; text-align: center; font-family: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif; border: 1px solid #E5E7EB; border-bottom: none;">
     <% if logo_url.present? %>
-      <img src="<%= logo_url %>" alt="<%= @brand.name %>" style="max-height: 50px; display: inline-block; vertical-align: middle;">
+      <img src="<%= logo_url %>" alt="<%= @brand.name %>" style="max-height: 60px; max-width: 240px; height: auto; display: inline-block; vertical-align: middle;">
     <% else %>
-      <span style="font-size: 22px; font-weight: 700; letter-spacing: 0.5px;"><%= @brand.name.upcase %></span>
+      <span style="font-size: 22px; font-weight: 700; letter-spacing: 0.5px; color: <%= @brand.primary_color %>;"><%= @brand.name.upcase %></span>
     <% end %>
   </div>
+  <%# İnce renk şerit — marka kimliği %>
+  <div style="height: 4px; background-color: <%= @brand.primary_color %>;"></div>
 
   <div style="padding: 24px; font-family: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.6; color: #1F2937;">
     <p style="margin: 0 0 16px;"><%= t('hi_there') %>,</p>
