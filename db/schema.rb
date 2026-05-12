@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_07_100100) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_12_021500) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "btree_gin"
   enable_extension "pg_catalog.plpgsql"
@@ -105,6 +105,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_07_100100) do
     t.string "email_from_address"
     t.string "email_from_name"
     t.text "email_intro_text"
+    t.string "logo_background_color", default: "#FFFFFF", null: false, comment: "E-postada logo container BG rengi (hex)"
     t.string "logo_path", null: false
     t.string "name", null: false
     t.string "primary_color", default: "#1F2937", null: false
