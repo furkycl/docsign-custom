@@ -1,0 +1,39 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# docsign-custom — Caddy Reverse Proxy
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# Caddy otomatik olarak Let's Encrypt'ten TLS sertifikası alır.
+# HTTPS portu 443'tedir, HTTP→HTTPS yönlendirmesi otomatiktir.
+#
+# Tek koşul: DNS'inde HOST değeri (örn. imza.musteri.com.tr) bu sunucunun
+# public IP'sine işaret etmeli.
+
+{$HOST} {
+    # Uygulama container'ına proxy
+    reverse_proxy app:3000
+
+    # Güvenlik header'ları
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "SAMEORIGIN"
+        Referrer-Policy "strict-origin-when-cross-origin"
+        # CSP not enforced — Rails handles via meta tags
+        -Server
+    }
+
+    # Büyük PDF upload'ları için 100 MB limit
+    request_body {
+        max_size 100MB
+    }
+
+    # Erişim logu (opsiyonel — geliştirme aşamasında işe yarar)
+    log {
+        output stdout
+        format console
+        level INFO
+    }
+
+    # Gzip + Zstandart sıkıştırma
+    encode gzip zstd
+}

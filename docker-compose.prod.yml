@@ -1,0 +1,133 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# docsign-custom — Production Docker Compose
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# Kullanım:
+#   1. .env.production dosyasını doldur (.env.production.example'a bak)
+#   2. DNS'inde HOST'a (örn. imza.musteri.com.tr) A-record ile sunucu IP'sini bağla
+#   3. Aşağıdaki komutu çalıştır:
+#
+#      docker compose -f docker-compose.prod.yml --env-file .env.production up -d
+#
+#   4. İlk build ~10 dakika sürer (Rails + frontend asset compile).
+#   5. Caddy domain doğrulaması yapıp Let's Encrypt sertifikasını otomatik alır.
+#   6. https://<HOST> tarayıcıdan açılır.
+#
+# Yeniden başlatma:    docker compose -f docker-compose.prod.yml restart
+# Logları izleme:      docker compose -f docker-compose.prod.yml logs -f
+# Container durumu:    docker compose -f docker-compose.prod.yml ps
+# Tümünü durdur:       docker compose -f docker-compose.prod.yml down
+#
+# ═══════════════════════════════════════════════════════════════════════════
+
+services:
+
+  # ─────────────────────────────────────────────────────────────────────
+  # Uygulama: Rails + Puma + Sidekiq embedded
+  # ─────────────────────────────────────────────────────────────────────
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      postgres:
+        condition: service_healthy
+    expose:
+      - "3000"   # Caddy bu porttan reverse proxy yapar
+    volumes:
+      - app_storage:/data/docuseal   # PDF dosyaları, audit log'lar, vs.
+    environment:
+      # Temel
+      RAILS_ENV: production
+      RAILS_LOG_TO_STDOUT: "true"
+      RAILS_SERVE_STATIC_FILES: "true"
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
+      FORCE_SSL: ${FORCE_SSL:-true}
+      HOST: ${HOST}
+
+      # DB
+      DATABASE_URL: ${DATABASE_URL}
+
+      # Redis (Sidekiq)
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
+
+      # SMTP
+      SMTP_ADDRESS: ${SMTP_ADDRESS}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USERNAME: ${SMTP_USERNAME}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+      SMTP_DOMAIN: ${SMTP_DOMAIN}
+      SMTP_AUTHENTICATION: ${SMTP_AUTHENTICATION:-plain}
+      SMTP_FROM: ${SMTP_FROM}
+      SMTP_OPEN_TIMEOUT: ${SMTP_OPEN_TIMEOUT:-15}
+      SMTP_READ_TIMEOUT: ${SMTP_READ_TIMEOUT:-25}
+
+      # S3 (opsiyonel — boş bırakılırsa disk kullanılır)
+      S3_ATTACHMENTS_BUCKET: ${S3_ATTACHMENTS_BUCKET:-}
+      S3_ATTACHMENTS_REGION: ${S3_ATTACHMENTS_REGION:-}
+      S3_ATTACHMENTS_ACCESS_KEY_ID: ${S3_ATTACHMENTS_ACCESS_KEY_ID:-}
+      S3_ATTACHMENTS_SECRET_ACCESS_KEY: ${S3_ATTACHMENTS_SECRET_ACCESS_KEY:-}
+      S3_ATTACHMENTS_ENDPOINT: ${S3_ATTACHMENTS_ENDPOINT:-}
+
+      # Uygulama
+      TIME_ZONE: ${TIME_ZONE:-Europe/Istanbul}
+      DEFAULT_LOCALE: ${DEFAULT_LOCALE:-tr}
+
+  # ─────────────────────────────────────────────────────────────────────
+  # PostgreSQL — uzun ömürlü veri (Submission, Brand, User, vs.)
+  # ─────────────────────────────────────────────────────────────────────
+  postgres:
+    image: postgres:16-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ─────────────────────────────────────────────────────────────────────
+  # Redis — Sidekiq job queue
+  # ─────────────────────────────────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    restart: always
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ─────────────────────────────────────────────────────────────────────
+  # Caddy — Reverse proxy + otomatik HTTPS (Let's Encrypt)
+  # ─────────────────────────────────────────────────────────────────────
+  caddy:
+    image: caddy:2-alpine
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    environment:
+      HOST: ${HOST}
+    depends_on:
+      - app
+
+volumes:
+  app_storage:
+  pg_data:
+  redis_data:
+  caddy_data:
+  caddy_config:

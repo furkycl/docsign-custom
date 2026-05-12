@@ -30,6 +30,11 @@ yarn-debug.log*
 .yarn-integrity
 
 .env
+# DOCSIGN-CUSTOM: .env.production gerçek secret'lar içerir — asla commit etme.
+# .env.production.example (template) push edilebilir, gerçek dosya değil.
+.env.production
+.env.local
+.env.staging
 .DS_Store
 
 /coverage
